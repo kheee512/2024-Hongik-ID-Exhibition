@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from 'react'
+import styled, { keyframes } from 'styled-components'
+import redCircle from './images/redCircle.png'
+import './App.css'
+
+const AppContainer = styled.div`
+  background-color: #ECECEC;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`
+
+const Circle = styled.img`
+  animation: ${fadeIn} 1.5s ease-in;
+  width: 200px;
+  height: 200px;
+  filter: drop-shadow(0 20px 25px rgba(0, 0, 0, 0.25));
+`
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <AppContainer>
+      <Circle src={redCircle} alt="Red Circle" />
+    </AppContainer>
+  )
 }
 
-export default App;
+export default App
