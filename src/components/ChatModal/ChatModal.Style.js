@@ -50,8 +50,9 @@ export const MessageBubble = styled.div`
   max-width: 60%;
   padding: 12px 16px;
   border-radius: 16px;
-  background-color: ${props => props.isUser ? '#4A90E2' : '#F0F0F0'};
-  color: ${props => props.isUser ? 'white' : 'black'};
+  background-color: ${props => props.isUser ? '#FFFFFF' : '#ECECEC'};
+  color: #333;  // 텍스트 색상을 검정색 계열로 통일
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);  // 약간의 그림자 추가
 `;
 
 export const InputArea = styled.div`
