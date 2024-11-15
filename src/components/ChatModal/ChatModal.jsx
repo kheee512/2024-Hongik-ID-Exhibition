@@ -18,7 +18,7 @@ import { callOpenAI } from '../../services/openai';
 import { useNavigate } from 'react-router-dom';
 import zoomIcon from '../../images/zoom.png';
 import xIcon from '../../images/x.png';
-import decoIcon from '../../images/deco.png';
+import iconsIcon from '../../images/icons.png';
 
 const ChatModal = ({ selectedCircle, onNavigateHome }) => {
   const [messages, setMessages] = useState([]);
@@ -38,20 +38,10 @@ const ChatModal = ({ selectedCircle, onNavigateHome }) => {
     }
   }, [messages]);
 
-  // 초기 메시지를 대화 히스토리에 포함
+  // 초기 메시지를 제거하고 빈 배열로 시작
   useEffect(() => {
     if (selectedCircle) {
-      const initialMessage = {
-        text: selectedCircle.question.main,
-        isUser: true,
-        timestamp: new Date().toISOString()
-      };
-      const aiResponse = {
-        text: `안녕하세요! "${selectedCircle.question.main}"에 대해 이야기를 나눠보아요.`,
-        isUser: false,
-        timestamp: new Date().toISOString()
-      };
-      setMessages([initialMessage, aiResponse]);
+      setMessages([]);
     }
   }, [selectedCircle]);
 
@@ -222,7 +212,12 @@ const ChatModal = ({ selectedCircle, onNavigateHome }) => {
           />
         </InputUpperArea>
         <InputLowerArea $selectedCircle={selectedCircle}>
-          <IconButton src={decoIcon} alt="decoration" rotate />
+          <div className="line"></div>
+          <img 
+            src={iconsIcon}
+            alt="icons" 
+            className="icons-image"
+          />
         </InputLowerArea>
       </InputArea>
     </ChatWindow>

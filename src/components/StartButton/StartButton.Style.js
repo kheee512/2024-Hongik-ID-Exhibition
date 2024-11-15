@@ -14,7 +14,7 @@ export const Button = styled.button`
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.8s ease, visibility 0.8s ease;
-  box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
   text-shadow: 2px 6px 8px rgba(0, 0, 0, 0.2);
   
   position: absolute;

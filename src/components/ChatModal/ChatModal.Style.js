@@ -76,11 +76,28 @@ export const InputUpperArea = styled.div`
 `;
 
 export const InputLowerArea = styled.div`
-  height: 50%;
-  background-color: ${props => props.$selectedCircle?.colors?.theme || '#4A90E2'};
+  width: 100%;
+  height: 40px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+  background-color: ${props => props.$selectedCircle?.colors?.theme || '#F0F0F0'};
+  position: relative;
+  padding: 0 10px;
+
+  .line {
+    width: 800px;
+    height: 2px;
+    background-color: #FFFFFF;
+    margin-left: 20px;
+  }
+
+  .icons-image {
+    width: auto;     // 너비를 자동으로 설정
+    height: 50%;     // 컨테이너 높이의 80%로 설정
+    object-fit: contain;  // 이미지 비율 유지
+    margin-right: 30px;
+  }
 `;
 
 export const IconButton = styled.img`
