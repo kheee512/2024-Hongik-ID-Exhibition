@@ -140,12 +140,17 @@ const Home = () => {
   const settings = {
     className: "center",
     centerMode: true,
-    infinite: true,
+    infinite: false,
     centerPadding: "0px",
     slidesToShow: 3,
     speed: 500,
     focusOnSelect: true,
     beforeChange: (current, next) => {
+      // 4번째 슬라이드(index: 3)에서 다음으로 넘어가려고 할 때 방지
+      if (current === 3 && next > 3) {
+        return false;
+      }
+      
       if (!isExpanded) {
         setShowStartButton(false);
         setTimeout(() => {
