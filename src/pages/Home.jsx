@@ -75,11 +75,11 @@ const CircleButtonWrapper = styled.div`
 `;
 
 const Home = () => {
-  const [showStartButton, setShowStartButton] = useState(false);
+  const [showStartButton, setShowStartButton] = useState(true);
   const [isExpanded, setIsExpanded] = useState(false);
   const [showQuestion, setShowQuestion] = useState(false);
   const [isFading, setIsFading] = useState(false);
-  const [selectedCircle, setSelectedCircle] = useState(null);
+  const [selectedCircle, setSelectedCircle] = useState(0);
   const [doubleSelected, setDoubleSelected] = useState(false);
   const navigate = useNavigate();
 
@@ -158,18 +158,20 @@ const Home = () => {
     speed: 500,
     arrows: false,
     focusOnSelect: true,
+    afterChange: (current) => {
+      // 슬라이드가 멈춘 후 중앙에 있는 구를 자동 선택
+      if (!isExpanded) {
+        setSelectedCircle(current);
+        setShowStartButton(true);
+      }
+    },
     beforeChange: (current, next) => {
-      // 4번째 슬라이드(index: 3)에서 다음으로 넘어가려고 할 때 방지
       if (current === 3 && next > 3) {
         return false;
       }
       
       if (!isExpanded) {
         setShowStartButton(false);
-        setTimeout(() => {
-          setSelectedCircle(next);
-          setShowStartButton(true);
-        }, 800);
       }
     }
   };
