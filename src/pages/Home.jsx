@@ -92,9 +92,19 @@ const Home = () => {
   }, [isExpanded]);
 
   const handleCircleClick = (index) => {
-    if (!showStartButton && !isExpanded) {
-      setShowStartButton(true);
-      setSelectedCircle(index);
+    if (!isExpanded) {
+      if (selectedCircle !== null && selectedCircle !== index) {
+        // 다른 원을 선택했을 때
+        setShowStartButton(false);
+        setTimeout(() => {
+          setSelectedCircle(index);
+          setShowStartButton(true);
+        }, 800); // transition 시간과 맞춤
+      } else if (selectedCircle === null) {
+        // 처음 원을 선택했을 때
+        setShowStartButton(true);
+        setSelectedCircle(index);
+      }
     } else if (showQuestion) {
       setIsFading(true);
       setTimeout(() => {
