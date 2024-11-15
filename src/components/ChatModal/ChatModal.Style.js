@@ -56,28 +56,33 @@ export const MessageBubble = styled.div`
 `;
 
 export const InputArea = styled.div`
+  height: 100px;
+  border-radius: 15px;
+  overflow: hidden;
   display: flex;
-  padding: 20px 0;
-  border-top: 1px solid #eee;
+  flex-direction: column;
+  margin-top: 20px;
 `;
 
-export const Input = styled.input`
-  flex: 1;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 20px;
-  margin-right: 10px;
+export const InputUpperArea = styled.div`
+  height: 50%;
+  background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
 `;
 
-export const SendButton = styled.button`
-  padding: 12px 24px;
-  border: none;
-  border-radius: 20px;
-  background-color: #4A90E2;
-  color: white;
+export const InputLowerArea = styled.div`
+  height: 50%;
+  background-color: ${props => props.$selectedCircle?.colors?.main || '#4A90E2'};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const IconButton = styled.img`
+  width: 24px;
+  height: 24px;
   cursor: pointer;
-  
-  &:hover {
-    background-color: #357ABD;
-  }
 `;

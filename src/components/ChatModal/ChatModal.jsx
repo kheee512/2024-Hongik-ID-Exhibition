@@ -9,12 +9,16 @@ import {
   Profile,
   MessageBubble,
   InputArea,
-  Input,
-  SendButton
+  InputUpperArea,
+  InputLowerArea,
+  IconButton
 } from './ChatModal.Style';
 import CircleButton from '../CircleButton/CircleButton';
 import { callOpenAI } from '../../services/openai';
 import { useNavigate } from 'react-router-dom';
+import zoomIcon from '../../images/zoom.png';
+import xIcon from '../../images/x.png';
+import decoIcon from '../../images/deco.png';
 
 const ChatModal = ({ selectedCircle }) => {
   const [messages, setMessages] = useState([]);
@@ -181,19 +185,13 @@ const ChatModal = ({ selectedCircle }) => {
         ))}
       </ChatArea>
       <InputArea>
-        <Input
-          value={inputText}
-          onChange={(e) => setInputText(e.target.value)}
-          placeholder="메시지를 입력하세요..."
-          onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-          disabled={isLoading}
-        />
-        <SendButton 
-          onClick={handleSend}
-          disabled={isLoading}
-        >
-          {isLoading ? '전송 중...' : '전송'}
-        </SendButton>
+        <InputUpperArea>
+          <IconButton src={zoomIcon} alt="zoom" />
+          <IconButton src={xIcon} alt="close" />
+        </InputUpperArea>
+        <InputLowerArea $selectedCircle={selectedCircle}>
+          <IconButton src={decoIcon} alt="decoration" />
+        </InputLowerArea>
       </InputArea>
     </ChatWindow>
   );
