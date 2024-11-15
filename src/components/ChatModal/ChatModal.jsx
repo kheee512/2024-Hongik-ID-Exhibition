@@ -186,8 +186,35 @@ const ChatModal = ({ selectedCircle }) => {
       </ChatArea>
       <InputArea>
         <InputUpperArea>
-          <IconButton src={zoomIcon} alt="zoom" />
-          <IconButton src={xIcon} alt="close" />
+          <IconButton 
+            onClick={handleSend}
+            disabled={isLoading}
+            src={zoomIcon} 
+            alt="send" 
+            style={{ marginRight: '10px' }}
+          />
+          <input
+            type="text"
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') handleSend();
+            }}
+            placeholder="Search"
+            style={{
+              flex: 1,
+              padding: '10px',
+              border: 'none',
+              borderRadius: '20px',
+              outline: 'none',
+              backgroundColor: '#FFFFFF'
+            }}
+          />
+          <IconButton 
+            src={xIcon} 
+            alt="close" 
+            style={{ marginLeft: '10px' }}
+          />
         </InputUpperArea>
         <InputLowerArea $selectedCircle={selectedCircle}>
           <IconButton src={decoIcon} alt="decoration" rotate />
