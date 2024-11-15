@@ -50,7 +50,7 @@ export const CircleImage = styled.img`
   animation: ${fadeIn} 1.5s ease-in;
   width: ${props => props.$size || '200px'};
   height: ${props => props.$size || '200px'};
-  filter: ${props => props.$noShadow ? 'none' : 'drop-shadow(0 10px 10px rgba(0, 0, 0, 0.3))'};
+  filter: ${props => props.$noShadow ? 'none' : 'drop-shadow(0 6px 8px rgba(0, 0, 0, 0.3))'};
   animation: ${props => {
     if (props.$isExpanded) {
       return props.$isSelected ? expandAnimation : fadeOutAnimation;

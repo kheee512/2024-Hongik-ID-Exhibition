@@ -128,7 +128,7 @@ const ChatModal = ({ selectedCircle }) => {
           paddingTop: '20px'
         }}>
           <CircleButton
-            imageSrc={selectedCircle.image}
+            imageSrc={selectedCircle.chatImage}
             isExpanded={false}
             isSelected={false}
             size="80px"

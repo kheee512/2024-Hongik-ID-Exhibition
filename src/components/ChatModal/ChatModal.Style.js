@@ -3,10 +3,11 @@ import styled from 'styled-components';
 export const ChatWindow = styled.div`
   width: 1000px;
   height: 600px;
-  background: ${props => {
-    const { from, to } = props.$selectedCircle?.colors?.gradient || {};
-    return from && to ? `linear-gradient(135deg, ${from}, ${to})` : 'white';
-  }};
+  background: linear-gradient(
+    to bottom,
+    ${props => props.$selectedCircle?.colors?.gradient?.from || '#FFFFFF33'}, 
+    ${props => props.$selectedCircle?.colors?.gradient?.to || '#ECECEC33'}
+  );
   border-radius: 30px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;

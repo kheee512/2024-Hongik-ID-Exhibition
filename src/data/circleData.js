@@ -2,15 +2,21 @@ import redCircle from '../images/redCircle.png';
 import blueCircle from '../images/blueCircle.png';
 import greenCircle from '../images/greenCircle.png';
 import orangeCircle from '../images/orangeCircle.png';
+import redCircle2 from '../images/redCircle2.png';
+import blueCircle2 from '../images/blueCircle2.png';
+import greenCircle2 from '../images/greenCircle2.png';
+import orangeCircle2 from '../images/orangeCircle2.png';
 
 export const circleData = [
   {
     id: 'redCircle',
     image: redCircle,
+    chatImage: redCircle2,
     colors: {
       gradient: {
         from: '#FF999933',
-        to: '#ECECEC33'
+        to: '#ECECEC33',
+        direction: 'to bottom'
       }
     },
     question: {
@@ -21,10 +27,12 @@ export const circleData = [
   {
     id: 'blueCircle',
     image: blueCircle,
+    chatImage: blueCircle2,
     colors: {
       gradient: {
         from: '#95A0FE33',
-        to: '#ECECEC33'
+        to: '#ECECEC33',
+        direction: 'to bottom'
       }
     },
     question: {
@@ -35,10 +43,12 @@ export const circleData = [
   {
     id: 'greenCircle',
     image: greenCircle,
+    chatImage: greenCircle2,
     colors: {
       gradient: {
         from: '#BAFFCB33',
-        to: '#ECECEC33'
+        to: '#ECECEC33',
+        direction: 'to bottom'
       }
     },
     question: {
@@ -49,10 +59,12 @@ export const circleData = [
   {
     id: 'orangeCircle',
     image: orangeCircle,
+    chatImage: orangeCircle2,
     colors: {
       gradient: {
         from: '#FFB55A33',
-        to: '#ECECEC33'
+        to: '#ECECEC33',
+        direction: 'to bottom'
       }
     },
     question: {
