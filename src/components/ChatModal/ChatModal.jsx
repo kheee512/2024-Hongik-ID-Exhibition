@@ -14,6 +14,7 @@ import {
 } from './ChatModal.Style';
 import CircleButton from '../CircleButton/CircleButton';
 import { callOpenAI } from '../../services/openai';
+import { useNavigate } from 'react-router-dom';
 
 const ChatModal = ({ selectedCircleImage, selectedQuestion }) => {
   const [messages, setMessages] = useState([]);
@@ -24,6 +25,7 @@ const ChatModal = ({ selectedCircleImage, selectedQuestion }) => {
     conversations: []
   });
   const chatAreaRef = useRef(null);
+  const navigate = useNavigate();
 
   // 스크롤을 항상 최신 메시지로 이동
   useEffect(() => {
@@ -110,6 +112,10 @@ const ChatModal = ({ selectedCircleImage, selectedQuestion }) => {
     }
   };
 
+  const handleCircleClick = () => {
+    navigate('/');
+  };
+
   return (
     <ChatWindow>
       <Header>
@@ -118,7 +124,7 @@ const ChatModal = ({ selectedCircleImage, selectedQuestion }) => {
           flexDirection: 'column', 
           alignItems: 'center', 
           gap: '20px', 
-          paddingTop: '40px'
+          paddingTop: '20px'
         }}>
           <CircleButton
             imageSrc={selectedCircleImage}
@@ -126,12 +132,12 @@ const ChatModal = ({ selectedCircleImage, selectedQuestion }) => {
             isSelected={false}
             size="80px"
             noShadow={true}
+            onClick={handleCircleClick}
           />
           <span style={{ 
             fontSize: '14px', 
             color: '#666', 
             textAlign: 'center',
-            maxWidth: '100%',
             marginBottom: '10px'
           }}>
             {selectedQuestion.questionText}
