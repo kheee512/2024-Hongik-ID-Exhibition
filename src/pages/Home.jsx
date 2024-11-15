@@ -58,6 +58,17 @@ const StyledSlider = styled(Slider)`
   }
 `;
 
+const slideData = [
+    { id: 1, image: redCircle },
+    { id: 2, image: blueCircle },
+    { id: 3, image: greenCircle },
+    { id: 4, image: orangeCircle },
+    // 빈 슬라이드 추가
+    { id: 5, image: null },
+    { id: 6, image: null },
+  ];
+  
+
 const Home = () => {
   const [showStartButton, setShowStartButton] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -148,32 +159,21 @@ const Home = () => {
   return (
     <Container isFading={isFading}>
       <ButtonContainer>
-        <StyledSlider {...settings}>
-          <CircleButton 
-            onClick={() => handleCircleClick(0)}
-            isExpanded={isExpanded}
-            isSelected={selectedCircle === 0}
-            imageSrc={redCircle}
-          />
-          <CircleButton 
-            onClick={() => handleCircleClick(1)}
-            isExpanded={isExpanded}
-            isSelected={selectedCircle === 1}
-            imageSrc={blueCircle}
-          />
-          <CircleButton 
-            onClick={() => handleCircleClick(2)}
-            isExpanded={isExpanded}
-            isSelected={selectedCircle === 2}
-            imageSrc={greenCircle}
-          />
-          <CircleButton 
-            onClick={() => handleCircleClick(3)}
-            isExpanded={isExpanded}
-            isSelected={selectedCircle === 3}
-            imageSrc={orangeCircle}
-          />
-        </StyledSlider>
+            <StyledSlider {...settings}>
+            {slideData.map((slide, index) => (
+                slide.image ? (
+                <CircleButton
+                    key={slide.id}
+                    onClick={() => handleCircleClick(index)}
+                    isExpanded={isExpanded}
+                    isSelected={selectedCircle === index}
+                    imageSrc={slide.image}
+                />
+                ) : (
+                <div key={slide.id} style={{ width: 0 }} />
+                )
+            ))}
+            </StyledSlider>
         <StartButton 
           onClick={handleStartClick}
           isVisible={showStartButton}
