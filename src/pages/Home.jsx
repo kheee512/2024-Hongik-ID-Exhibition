@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import styled from 'styled-components';
 import CircleButton from '../components/CircleButton/CircleButton';
 import StartButton from '../components/StartButton/StartButton';
@@ -26,31 +29,33 @@ const Container = styled.div`
   opacity: ${props => props.isFading ? 0 : 1};
 `;
 
-const CIRCLE_DIAMETER = 200;
-
-const ScrollContainer = styled.div`
-  display: flex;
-  
-  width: 100%;
-  
-  gap: 100px;
-  
-  
-  
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-`;
-
 const ButtonContainer = styled.div`
+  width: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100vh;
   justify-content: center;
+`;
+
+const StyledSlider = styled(Slider)`
+  width: 80%;
+  
+  .slick-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .slick-center {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .slick-list {
+    overflow: visible;
+  }
 `;
 
 const Home = () => {
@@ -120,10 +125,30 @@ const Home = () => {
     }
   };
 
+  // 슬라이더 설정
+  const settings = {
+    className: "center",
+    centerMode: true,
+    infinite: true,
+    centerPadding: "0px",
+    slidesToShow: 3,
+    speed: 500,
+    focusOnSelect: true,
+    beforeChange: (current, next) => {
+      if (!isExpanded) {
+        setShowStartButton(false);
+        setTimeout(() => {
+          setSelectedCircle(next);
+          setShowStartButton(true);
+        }, 800);
+      }
+    }
+  };
+
   return (
     <Container isFading={isFading}>
       <ButtonContainer>
-        <ScrollContainer>
+        <StyledSlider {...settings}>
           <CircleButton 
             onClick={() => handleCircleClick(0)}
             isExpanded={isExpanded}
@@ -148,7 +173,7 @@ const Home = () => {
             isSelected={selectedCircle === 3}
             imageSrc={orangeCircle}
           />
-        </ScrollContainer>
+        </StyledSlider>
         <StartButton 
           onClick={handleStartClick}
           isVisible={showStartButton}
