@@ -136,7 +136,12 @@ const Home = () => {
     } else if (showQuestion) {
       setIsFading(true);
       setTimeout(() => {
-        navigate('/chat');
+        navigate('/chat', { 
+          state: { 
+            selectedCircleImage: slideData[selectedCircle].image,
+            selectedQuestion: questions[selectedCircle]
+          } 
+        });
       }, 500);
     }
   };

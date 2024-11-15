@@ -1,10 +1,159 @@
-import React from 'react';
-import { ChatWindow } from './ChatModal.Style';
+import React, { useState, useEffect, useRef } from 'react';
+import {
+  ChatWindow,
+  Header,
+  ChatArea,
+  MessageContainer,
+  Profile,
+  MessageBubble,
+  InputArea,
+  Input,
+  SendButton
+} from './ChatModal.Style';
+import CircleButton from '../CircleButton/CircleButton';
+import { callOpenAI } from '../../services/openai';
 
-const ChatModal = () => {
+const ChatModal = ({ selectedCircleImage, selectedQuestion }) => {
+  const [messages, setMessages] = useState([]);
+  const [inputText, setInputText] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [tokenUsage, setTokenUsage] = useState({
+    total: 0,
+    conversations: []
+  });
+  const chatAreaRef = useRef(null);
+
+  // 스크롤을 항상 최신 메시지로 이동
+  useEffect(() => {
+    if (chatAreaRef.current) {
+      chatAreaRef.current.scrollTop = chatAreaRef.current.scrollHeight;
+    }
+  }, [messages]);
+
+  // 초기 메시지를 대화 히스토리에 포함
+  useEffect(() => {
+    if (selectedQuestion) {
+      const initialMessage = {
+        text: selectedQuestion.questionText,
+        isUser: true,
+        timestamp: new Date().toISOString()
+      };
+      const aiResponse = {
+        text: `안녕하세요! "${selectedQuestion.questionText}"에 대해 이야기를 나눠보아요.`,
+        isUser: false,
+        timestamp: new Date().toISOString()
+      };
+      setMessages([initialMessage, aiResponse]);
+    }
+  }, [selectedQuestion]);
+
+  const handleSend = async () => {
+    if (!inputText.trim() || isLoading) return;
+
+    const userMessage = {
+      text: inputText,
+      isUser: true,
+      timestamp: new Date().toISOString()
+    };
+
+    // 즉시 메시지 목록 업데이트
+    setMessages(prev => [...prev, userMessage]);
+    setInputText('');
+    setIsLoading(true);
+
+    try {
+      const response = await callOpenAI(
+        inputText,
+        selectedQuestion.questionText,
+        messages // 전체 대화 히스토리 전달
+      );
+      
+      const aiMessage = {
+        text: response.content,
+        isUser: false,
+        timestamp: new Date().toISOString()
+      };
+
+      console.log('=== AI 응답 ===');
+      console.log('AI Message:', aiMessage);
+
+      if (response.usage) {
+        setTokenUsage(prev => ({
+          total: prev.total + response.usage.total_tokens,
+          conversations: [...prev.conversations, {
+            timestamp: new Date().toISOString(),
+            promptTokens: response.usage.prompt_tokens,
+            completionTokens: response.usage.completion_tokens,
+            totalTokens: response.usage.total_tokens
+          }]
+        }));
+
+        console.log('=== 토큰 사용량 업데이트 ===');
+        console.log('Current Conversation Usage:', response.usage);
+        console.log('Total Token Usage:', tokenUsage.total + response.usage.total_tokens);
+      }
+
+      setMessages(prev => [...prev, aiMessage]);
+    } catch (error) {
+      console.error('Error in chat:', error);
+      const errorMessage = {
+        text: '죄송합니다. 오류가 발생했습니다.',
+        isUser: false,
+        timestamp: new Date().toISOString(),
+        isError: true
+      };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <ChatWindow>
-      {/* 채팅 컨텐츠는 여기에 추가될 예정입니다 */}
+      <Header>
+        <CircleButton
+          imageSrc={selectedCircleImage}
+          isExpanded={false}
+          isSelected={false}
+          style={{ width: '40px', height: '40px' }}
+        />
+      </Header>
+      <ChatArea ref={chatAreaRef}>
+        {messages.map((message, index) => (
+          <MessageContainer key={index} isUser={message.isUser}>
+            {message.isUser ? (
+              <>
+                <MessageBubble isUser={message.isUser}>
+                  {message.text}
+                </MessageBubble>
+                <Profile isUser={message.isUser} />
+              </>
+            ) : (
+              <>
+                <Profile isUser={message.isUser} />
+                <MessageBubble isUser={message.isUser}>
+                  {message.text}
+                </MessageBubble>
+              </>
+            )}
+          </MessageContainer>
+        ))}
+      </ChatArea>
+      <InputArea>
+        <Input
+          value={inputText}
+          onChange={(e) => setInputText(e.target.value)}
+          placeholder="메시지를 입력하세요..."
+          onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+          disabled={isLoading}
+        />
+        <SendButton 
+          onClick={handleSend}
+          disabled={isLoading}
+        >
+          {isLoading ? '전송 중...' : '전송'}
+        </SendButton>
+      </InputArea>
     </ChatWindow>
   );
 };

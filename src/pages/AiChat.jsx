@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ChatModal from '../components/ChatModal/ChatModal';
+import { useLocation } from 'react-router-dom';
 
 const ChatContainer = styled.div`
   display: flex;
@@ -26,9 +27,15 @@ const ChatContainer = styled.div`
 `;
 
 function Chat() {
+  const location = useLocation();
+  const { selectedCircleImage, selectedQuestion } = location.state || {};
+
   return (
     <ChatContainer>
-      <ChatModal />
+      <ChatModal 
+        selectedCircleImage={selectedCircleImage}
+        selectedQuestion={selectedQuestion}
+      />
     </ChatContainer>
   );
 }
