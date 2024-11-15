@@ -113,18 +113,25 @@ const ChatModal = ({ selectedCircleImage, selectedQuestion }) => {
   return (
     <ChatWindow>
       <Header>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
+        <div style={{ 
+          display: 'flex', 
+          flexDirection: 'column', 
+          alignItems: 'center', 
+          gap: '20px', 
+          paddingTop: '60px'
+        }}>
           <CircleButton
             imageSrc={selectedCircleImage}
             isExpanded={false}
             isSelected={false}
-            size="100px"
+            size="80px"
           />
           <span style={{ 
             fontSize: '14px', 
             color: '#666', 
             textAlign: 'center',
-            maxWidth: '100%' 
+            maxWidth: '100%',
+            marginBottom: '10px'
           }}>
             {selectedQuestion.questionText}
           </span>
