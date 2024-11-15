@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ChatModal from '../components/ChatModal/ChatModal';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Navigate } from 'react-router-dom';
 
 const ChatContainer = styled.div`
   display: flex;
@@ -28,14 +28,16 @@ const ChatContainer = styled.div`
 
 function Chat() {
   const location = useLocation();
-  const { selectedCircleImage, selectedQuestion } = location.state || {};
+  const selectedCircle = location.state?.selectedCircle;
+
+  // selectedCircle이 없으면 홈으로 리다이렉트
+  if (!selectedCircle) {
+    return <Navigate to="/" replace />;
+  }
 
   return (
     <ChatContainer>
-      <ChatModal 
-        selectedCircleImage={selectedCircleImage}
-        selectedQuestion={selectedQuestion}
-      />
+      <ChatModal selectedCircle={selectedCircle} />
     </ChatContainer>
   );
 }

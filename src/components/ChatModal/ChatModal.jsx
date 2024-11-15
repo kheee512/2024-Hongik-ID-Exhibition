@@ -16,7 +16,7 @@ import CircleButton from '../CircleButton/CircleButton';
 import { callOpenAI } from '../../services/openai';
 import { useNavigate } from 'react-router-dom';
 
-const ChatModal = ({ selectedCircleImage, selectedQuestion }) => {
+const ChatModal = ({ selectedCircle }) => {
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -36,20 +36,20 @@ const ChatModal = ({ selectedCircleImage, selectedQuestion }) => {
 
   // 초기 메시지를 대화 히스토리에 포함
   useEffect(() => {
-    if (selectedQuestion) {
+    if (selectedCircle) {
       const initialMessage = {
-        text: selectedQuestion.questionText,
+        text: selectedCircle.question.main,
         isUser: true,
         timestamp: new Date().toISOString()
       };
       const aiResponse = {
-        text: `안녕하세요! "${selectedQuestion.questionText}"에 대해 이야기를 나눠보아요.`,
+        text: `안녕하세요! "${selectedCircle.question.main}"에 대해 이야기를 나눠보아요.`,
         isUser: false,
         timestamp: new Date().toISOString()
       };
       setMessages([initialMessage, aiResponse]);
     }
-  }, [selectedQuestion]);
+  }, [selectedCircle]);
 
   const handleSend = async () => {
     if (!inputText.trim() || isLoading) return;
@@ -68,7 +68,7 @@ const ChatModal = ({ selectedCircleImage, selectedQuestion }) => {
     try {
       const response = await callOpenAI(
         inputText,
-        selectedQuestion.questionText,
+        selectedCircle.question.main,
         messages // 전체 대화 히스토리 전달
       );
       
@@ -112,12 +112,13 @@ const ChatModal = ({ selectedCircleImage, selectedQuestion }) => {
     }
   };
 
-  const handleCircleClick = () => {
-    navigate('/');
-  };
+  // selectedCircle이 없으면 로딩 상태나 에러 표시
+  if (!selectedCircle) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <ChatWindow>
+    <ChatWindow $selectedCircle={selectedCircle}>
       <Header>
         <div style={{ 
           display: 'flex', 
@@ -127,12 +128,12 @@ const ChatModal = ({ selectedCircleImage, selectedQuestion }) => {
           paddingTop: '20px'
         }}>
           <CircleButton
-            imageSrc={selectedCircleImage}
+            imageSrc={selectedCircle.image}
             isExpanded={false}
             isSelected={false}
             size="80px"
             noShadow={true}
-            onClick={handleCircleClick}
+            onClick={() => navigate('/')}
           />
           <span style={{ 
             fontSize: '14px', 
@@ -140,7 +141,7 @@ const ChatModal = ({ selectedCircleImage, selectedQuestion }) => {
             textAlign: 'center',
             marginBottom: '10px'
           }}>
-            {selectedQuestion.questionText}
+            {selectedCircle.question.main}
           </span>
         </div>
       </Header>

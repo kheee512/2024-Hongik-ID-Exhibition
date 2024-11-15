@@ -6,10 +6,7 @@ import styled from 'styled-components';
 import CircleButton from '../components/CircleButton/CircleButton';
 import StartButton from '../components/StartButton/StartButton';
 import Question from '../components/Question/Question';
-import redCircle from '../images/redCircle.png';
-import blueCircle from '../images/blueCircle.png';
-import greenCircle from '../images/greenCircle.png';
-import orangeCircle from '../images/orangeCircle.png';
+import { circleData, slideData } from '../data/circleData';
 import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
@@ -58,17 +55,6 @@ const StyledSlider = styled(Slider)`
   }
 `;
 
-const slideData = [
-    { id: 1, image: redCircle },
-    { id: 2, image: blueCircle },
-    { id: 3, image: greenCircle },
-    { id: 4, image: orangeCircle },
-    // 빈 슬라이드 추가
-    { id: 5, image: null },
-    { id: 6, image: null },
-  ];
-  
-
 const CircleButtonWrapper = styled.div`
   opacity: ${props => props.fadeOut ? 0 : 1};
   transition: opacity 0.5s ease-in-out;
@@ -82,26 +68,6 @@ const Home = () => {
   const [selectedCircle, setSelectedCircle] = useState(0);
   const [doubleSelected, setDoubleSelected] = useState(false);
   const navigate = useNavigate();
-
-  // 각 원형 버튼별 질문 데이터 추가
-  const questions = [
-    {
-      questionText: "오늘 가장 기억에 남은 순간은?",
-      subText: "전시중 가장 인상 깊었던 것은?"
-    },
-    {
-      questionText: "이 작품을 통해 어떤 감정을 느꼈나요?",
-      subText: "당신의 솔직한 감정을 들려주세요"
-    },
-    {
-      questionText: "이 작품이 당신에게 어떤 의미인가요?",
-      subText: "당신만의 해석을 들려주세요"
-    },
-    {
-      questionText: "이 작품을 누구와 함께 보고 싶나요?",
-      subText: "그 이유는 무엇인가요?"
-    }
-  ];
 
   useEffect(() => {
     if (isExpanded) {
@@ -138,8 +104,7 @@ const Home = () => {
       setTimeout(() => {
         navigate('/chat', { 
           state: { 
-            selectedCircleImage: slideData[selectedCircle].image,
-            selectedQuestion: questions[selectedCircle]
+            selectedCircle: circleData[selectedCircle],
           } 
         });
       }, 500);
@@ -186,25 +151,25 @@ const Home = () => {
   return (
     <Container isFading={isFading}>
       <ButtonContainer>
-            <StyledSlider {...settings}>
-            {slideData.map((slide, index) => (
-                slide.image ? (
-                <CircleButtonWrapper 
-                  key={slide.id} 
-                  fadeOut={doubleSelected && selectedCircle !== index}
-                >
-                  <CircleButton
-                    onClick={() => handleCircleClick(index)}
-                    isExpanded={isExpanded}
-                    isSelected={selectedCircle === index}
-                    imageSrc={slide.image}
-                  />
-                </CircleButtonWrapper>
-                ) : (
-                <div key={slide.id} style={{ width: 0 }} />
-                )
-            ))}
-            </StyledSlider>
+        <StyledSlider {...settings}>
+          {slideData.map((slide, index) => (
+            slide.image ? (
+            <CircleButtonWrapper 
+              key={slide.id} 
+              fadeOut={doubleSelected && selectedCircle !== index}
+            >
+              <CircleButton
+                onClick={() => handleCircleClick(index)}
+                isExpanded={isExpanded}
+                isSelected={selectedCircle === index}
+                imageSrc={slide.image}
+              />
+            </CircleButtonWrapper>
+            ) : (
+            <div key={slide.id} style={{ width: 0 }} />
+            )
+          ))}
+        </StyledSlider>
         <StartButton 
           onClick={handleStartClick}
           isVisible={showStartButton}
@@ -212,8 +177,8 @@ const Home = () => {
       </ButtonContainer>
       <Question 
         isVisible={showQuestion}
-        questionText={selectedCircle !== null ? questions[selectedCircle].questionText : ""}
-        subText={selectedCircle !== null ? questions[selectedCircle].subText : ""}
+        questionText={selectedCircle !== null ? circleData[selectedCircle].question.main : ""}
+        subText={selectedCircle !== null ? circleData[selectedCircle].question.sub : ""}
       />
     </Container>
   );
