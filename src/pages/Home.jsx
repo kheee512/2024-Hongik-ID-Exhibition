@@ -7,7 +7,7 @@ import CircleButton from '../components/CircleButton/CircleButton';
 import StartButton from '../components/StartButton/StartButton';
 import Question from '../components/Question/Question';
 import { circleData, slideData } from '../data/circleData';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Container = styled.div`
   background-color: #ECECEC;
@@ -24,6 +24,17 @@ const Container = styled.div`
   left: 0;
   transition: opacity 0.5s ease-in-out;
   opacity: ${props => props.isFading ? 0 : 1};
+  animation: ${props => props.isEntering ? 'fadeIn 0.5s ease-in-out' : 'none'};
+  transition: all 0.5s ease-in-out;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -68,6 +79,29 @@ const Home = () => {
   const [selectedCircle, setSelectedCircle] = useState(0);
   const [doubleSelected, setDoubleSelected] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const [isEntering, setIsEntering] = useState(true);
+  const [prevTimestamp, setPrevTimestamp] = useState(null);
+
+  useEffect(() => {
+    if (location.state?.isNavigatingBack) {
+      const currentTimestamp = location.state.timestamp;
+      
+      if (currentTimestamp !== prevTimestamp) {
+        setPrevTimestamp(currentTimestamp);
+        setIsEntering(false);
+        const timer = setTimeout(() => {
+          setIsEntering(true);
+        }, 50);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [location.state]);
+
+  useEffect(() => {
+    setIsEntering(true);
+    return () => setIsEntering(false);
+  }, []);
 
   useEffect(() => {
     if (isExpanded) {
@@ -149,7 +183,7 @@ const Home = () => {
   };
 
   return (
-    <Container isFading={isFading}>
+    <Container isFading={isFading} isEntering={isEntering}>
       <ButtonContainer>
         <StyledSlider {...settings}>
           {slideData.map((slide, index) => (

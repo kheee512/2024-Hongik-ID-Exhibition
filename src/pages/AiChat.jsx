@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ChatModal from '../components/ChatModal/ChatModal';
-import { useLocation, Navigate } from 'react-router-dom';
+import { useLocation, Navigate, useNavigate } from 'react-router-dom';
 
 const ChatContainer = styled.div`
   display: flex;
@@ -13,8 +13,9 @@ const ChatContainer = styled.div`
   box-sizing: border-box;
   background-color: #ECECEC;
   padding: 20px;
-  opacity: 0;
-  animation: fadeIn 0.5s ease-in-out forwards;
+  opacity: ${props => props.isFading ? 0 : 1};
+  animation: ${props => props.isEntering ? 'fadeIn 0.5s ease-in-out' : 'none'};
+  transition: all 0.5s ease-in-out;
 
   @keyframes fadeIn {
     from {
@@ -28,16 +29,41 @@ const ChatContainer = styled.div`
 
 function Chat() {
   const location = useLocation();
+  const navigate = useNavigate();
   const selectedCircle = location.state?.selectedCircle;
+  const [isFading, setIsFading] = useState(false);
+  const [isEntering, setIsEntering] = useState(true);
 
-  // selectedCircle이 없으면 홈으로 리다이렉트
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsEntering(true);
+    }, 50);
+    return () => clearTimeout(timer);
+  }, []);
+
   if (!selectedCircle) {
     return <Navigate to="/" replace />;
   }
 
+  const handleNavigateHome = () => {
+    setIsFading(true);
+    setTimeout(() => {
+      navigate('/', { 
+        state: { 
+          isNavigatingBack: true,
+          timestamp: Date.now()
+        },
+        replace: true
+      });
+    }, 500);
+  };
+
   return (
-    <ChatContainer>
-      <ChatModal selectedCircle={selectedCircle} />
+    <ChatContainer isFading={isFading} isEntering={isEntering}>
+      <ChatModal 
+        selectedCircle={selectedCircle} 
+        onNavigateHome={handleNavigateHome}
+      />
     </ChatContainer>
   );
 }

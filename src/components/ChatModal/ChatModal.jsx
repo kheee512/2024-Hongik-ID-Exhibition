@@ -20,7 +20,7 @@ import zoomIcon from '../../images/zoom.png';
 import xIcon from '../../images/x.png';
 import decoIcon from '../../images/deco.png';
 
-const ChatModal = ({ selectedCircle }) => {
+const ChatModal = ({ selectedCircle, onNavigateHome }) => {
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -116,6 +116,10 @@ const ChatModal = ({ selectedCircle }) => {
     }
   };
 
+  const handleHomeClick = () => {
+    onNavigateHome();
+  };
+
   // selectedCircle이 없으면 로딩 상태나 에러 표시
   if (!selectedCircle) {
     return <div>Loading...</div>;
@@ -137,7 +141,7 @@ const ChatModal = ({ selectedCircle }) => {
             isSelected={false}
             size="80px"
             noShadow={true}
-            onClick={() => navigate('/')}
+            onClick={handleHomeClick}
           />
           <span style={{ 
             fontSize: '14px', 
@@ -211,8 +215,9 @@ const ChatModal = ({ selectedCircle }) => {
             }}
           />
           <IconButton 
+            onClick={() => setInputText('')}
             src={xIcon} 
-            alt="close" 
+            alt="clear" 
             style={{ marginLeft: '10px' }}
           />
         </InputUpperArea>
