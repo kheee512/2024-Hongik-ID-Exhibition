@@ -56,12 +56,14 @@ export const MessageBubble = styled.div`
 `;
 
 export const InputArea = styled.div`
-  height: 100px;
-  border-radius: 15px;
+  height: 80px;
+  width: 100%;
+  border-radius: 10px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   margin-top: 20px;
+  margin-bottom: 20px;
 `;
 
 export const InputUpperArea = styled.div`
@@ -75,14 +77,17 @@ export const InputUpperArea = styled.div`
 
 export const InputLowerArea = styled.div`
   height: 50%;
-  background-color: ${props => props.$selectedCircle?.colors?.main || '#4A90E2'};
+  background-color: ${props => props.$selectedCircle?.colors?.theme || '#4A90E2'};
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
 export const IconButton = styled.img`
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   cursor: pointer;
+  ${props => props.rotate && `
+    transform: rotate(90deg);
+  `}
 `;

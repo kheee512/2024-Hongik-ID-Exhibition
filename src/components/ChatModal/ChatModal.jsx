@@ -190,7 +190,7 @@ const ChatModal = ({ selectedCircle }) => {
           <IconButton src={xIcon} alt="close" />
         </InputUpperArea>
         <InputLowerArea $selectedCircle={selectedCircle}>
-          <IconButton src={decoIcon} alt="decoration" />
+          <IconButton src={decoIcon} alt="decoration" rotate />
         </InputLowerArea>
       </InputArea>
     </ChatWindow>

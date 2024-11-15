@@ -13,6 +13,7 @@ export const circleData = [
     image: redCircle,
     chatImage: redCircle2,
     colors: {
+      theme: '#FF9999',
       gradient: {
         from: '#FF999933',
         to: '#ECECEC33',
@@ -29,6 +30,7 @@ export const circleData = [
     image: blueCircle,
     chatImage: blueCircle2,
     colors: {
+      theme: '#95A0FE',
       gradient: {
         from: '#95A0FE33',
         to: '#ECECEC33',
@@ -45,6 +47,7 @@ export const circleData = [
     image: greenCircle,
     chatImage: greenCircle2,
     colors: {
+      theme: '#BAFFCB',
       gradient: {
         from: '#BAFFCB33',
         to: '#ECECEC33',
@@ -61,6 +64,7 @@ export const circleData = [
     image: orangeCircle,
     chatImage: orangeCircle2,
     colors: {
+      theme: '#FFB55A',
       gradient: {
         from: '#FFB55A33',
         to: '#ECECEC33',
