@@ -5,7 +5,7 @@ const openai = new OpenAI({
   dangerouslyAllowBrowser: true
 });
 
-export const callOpenAI = async (message, context, messageHistory) => {
+export const callOpenAI = async (message, context, messageHistory, onStream) => {
   try {
     console.log('=== OpenAI API 요청 ===');
     console.log('Context:', context);
@@ -28,21 +28,24 @@ export const callOpenAI = async (message, context, messageHistory) => {
     ];
 
     const completion = await openai.chat.completions.create({
-      model: "gpt-4o",
+      model: "gpt-4",
       messages: messages,
       temperature: 0.7,
+      stream: true
     });
 
-    const response = completion.choices[0].message.content;
-    const usage = completion.usage;
+    let fullResponse = '';
+    for await (const chunk of completion) {
+      const content = chunk.choices[0]?.delta?.content || '';
+      fullResponse += content;
+      onStream(content);
+    }
 
     console.log('=== OpenAI API 응답 ===');
-    console.log('AI Response:', response);
-    console.log('Token Usage:', usage);
+    console.log('AI Response:', fullResponse);
 
     return {
-      content: response,
-      usage: usage
+      content: fullResponse
     };
   } catch (error) {
     console.error('OpenAI API 호출 중 오류:', error);

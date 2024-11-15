@@ -47,7 +47,7 @@ const ChatModal = ({ selectedCircle, onNavigateHome }) => {
   }, [selectedCircle]);
 
   const handleSend = async () => {
-    if (!inputText.trim() || isLoading) return;
+    if (!inputText.trim()) return;
 
     const userMessage = {
       text: inputText,
@@ -55,55 +55,39 @@ const ChatModal = ({ selectedCircle, onNavigateHome }) => {
       timestamp: new Date().toISOString()
     };
 
-    // 즉시 메시지 목록 업데이트
     setMessages(prev => [...prev, userMessage]);
     setInputText('');
-    setIsLoading(true);
+
+    // AI 메시지 초기 상태 추가
+    const aiMessageId = Date.now();
+    setMessages(prev => [...prev, {
+      id: aiMessageId,
+      text: '',
+      isUser: false,
+      timestamp: new Date().toISOString()
+    }]);
 
     try {
-      const response = await callOpenAI(
+      await callOpenAI(
         inputText,
         selectedCircle.question.main,
-        messages // 전체 대화 히스토리 전달
+        messages,
+        (chunk) => {
+          // 스트리밍 응답을 실시간으로 업데이트
+          setMessages(prev => prev.map(msg => 
+            msg.id === aiMessageId 
+              ? { ...msg, text: msg.text + chunk }
+              : msg
+          ));
+        }
       );
-      
-      const aiMessage = {
-        text: response.content,
-        isUser: false,
-        timestamp: new Date().toISOString()
-      };
-
-      console.log('=== AI 응답 ===');
-      console.log('AI Message:', aiMessage);
-
-      if (response.usage) {
-        setTokenUsage(prev => ({
-          total: prev.total + response.usage.total_tokens,
-          conversations: [...prev.conversations, {
-            timestamp: new Date().toISOString(),
-            promptTokens: response.usage.prompt_tokens,
-            completionTokens: response.usage.completion_tokens,
-            totalTokens: response.usage.total_tokens
-          }]
-        }));
-
-        console.log('=== 토큰 사용량 업데이트 ===');
-        console.log('Current Conversation Usage:', response.usage);
-        console.log('Total Token Usage:', tokenUsage.total + response.usage.total_tokens);
-      }
-
-      setMessages(prev => [...prev, aiMessage]);
     } catch (error) {
       console.error('Error in chat:', error);
-      const errorMessage = {
-        text: '죄송합니다. 오류가 발생했습니다.',
-        isUser: false,
-        timestamp: new Date().toISOString(),
-        isError: true
-      };
-      setMessages(prev => [...prev, errorMessage]);
-    } finally {
-      setIsLoading(false);
+      setMessages(prev => prev.map(msg => 
+        msg.id === aiMessageId 
+          ? { ...msg, text: '죄송합니다. 오류가 발생했습니다.', isError: true }
+          : msg
+      ));
     }
   };
 
@@ -178,23 +162,6 @@ const ChatModal = ({ selectedCircle, onNavigateHome }) => {
             )}
           </MessageContainer>
         ))}
-        {isLoading && (
-          <MessageContainer isUser={false}>
-            <Profile 
-              isUser={false}
-              style={{
-                backgroundImage: `url(${aiProfile})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
-              }}
-            />
-            <LoadingBubble isUser={false}>
-              <span className="dot"></span>
-              <span className="dot"></span>
-              <span className="dot"></span>
-            </LoadingBubble>
-          </MessageContainer>
-        )}
       </ChatArea>
       <InputArea>
         <InputUpperArea>
