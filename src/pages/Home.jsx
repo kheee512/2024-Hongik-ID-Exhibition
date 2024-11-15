@@ -61,6 +61,26 @@ const Home = () => {
   const [selectedCircle, setSelectedCircle] = useState(null);
   const navigate = useNavigate();
 
+  // 각 원형 버튼별 질문 데이터 추가
+  const questions = [
+    {
+      questionText: "오늘 가장 기억에 남은 순간은?",
+      subText: "전시중 가장 인상 깊었던 것은?"
+    },
+    {
+      questionText: "이 작품을 통해 어떤 감정을 느꼈나요?",
+      subText: "당신의 솔직한 감정을 들려주세요"
+    },
+    {
+      questionText: "이 작품이 당신에게 어떤 의미인가요?",
+      subText: "당신만의 해석을 들려주세요"
+    },
+    {
+      questionText: "이 작품을 누구와 함께 보고 싶나요?",
+      subText: "그 이유는 무엇인가요?"
+    }
+  ];
+
   useEffect(() => {
     if (isExpanded) {
       const timer = setTimeout(() => {
@@ -126,8 +146,8 @@ const Home = () => {
       </ButtonContainer>
       <Question 
         isVisible={showQuestion}
-        questionText="오늘 가장 기억에 남은 순간은?"
-        subText="전시중 가장 인상 깊었던 것은?"
+        questionText={selectedCircle !== null ? questions[selectedCircle].questionText : ""}
+        subText={selectedCircle !== null ? questions[selectedCircle].subText : ""}
       />
     </Container>
   );
