@@ -9,8 +9,8 @@ export const circleData = [
     image: redCircle,
     colors: {
       gradient: {
-        from: '#FF9999',
-        to: '#F7B188'
+        from: '#FF999933',
+        to: '#ECECEC33'
       }
     },
     question: {
@@ -23,8 +23,8 @@ export const circleData = [
     image: blueCircle,
     colors: {
       gradient: {
-        from: '#95A0FE',
-        to: '#A2DAFF'
+        from: '#95A0FE33',
+        to: '#ECECEC33'
       }
     },
     question: {
@@ -37,8 +37,8 @@ export const circleData = [
     image: greenCircle,
     colors: {
       gradient: {
-        from: '#BAFFCB',
-        to: '#C4FF80'
+        from: '#BAFFCB33',
+        to: '#ECECEC33'
       }
     },
     question: {
@@ -51,8 +51,8 @@ export const circleData = [
     image: orangeCircle,
     colors: {
       gradient: {
-        from: '#FFB55A',
-        to: '#FFCDA2'
+        from: '#FFB55A33',
+        to: '#ECECEC33'
       }
     },
     question: {
