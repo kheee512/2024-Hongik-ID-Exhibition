@@ -9,6 +9,17 @@ const ChatContainer = styled.div`
   
   background-color: #ECECEC;
   padding: 20px;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out forwards;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;
 
 const ChatWindow = styled.div`
