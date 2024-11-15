@@ -162,7 +162,9 @@ const Home = () => {
       // 슬라이드가 멈춘 후 중앙에 있는 구를 자동 선택
       if (!isExpanded) {
         setSelectedCircle(current);
-        setShowStartButton(true);
+        if (selectedCircle === current && !doubleSelected) {
+          setShowStartButton(true);
+        }
       }
     },
     beforeChange: (current, next) => {
