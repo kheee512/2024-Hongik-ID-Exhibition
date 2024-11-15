@@ -18,14 +18,24 @@ const expandAnimation = keyframes`
   }
 `;
 
+const fadeOutAnimation = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+`;
+
 export const Button = styled.button`
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, opacity 1s ease;
   position: relative;
   z-index: 1;
+  opacity: ${props => (!props.$isSelected && props.$isExpanded) ? 0 : 1};
 
   &:hover {
     transform: ${props => props.$isExpanded ? 'none' : 'scale(1.05)'};
@@ -41,6 +51,11 @@ export const CircleImage = styled.img`
   width: 200px;
   height: 200px;
   filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.3));
-  animation: ${props => props.$isExpanded ? expandAnimation : 'none'} 1s ease-in-out forwards;
+  animation: ${props => {
+    if (props.$isExpanded) {
+      return props.$isSelected ? expandAnimation : fadeOutAnimation;
+    }
+    return 'none';
+  }} 1s ease-in-out forwards;
   transform-origin: center center;
 `; 

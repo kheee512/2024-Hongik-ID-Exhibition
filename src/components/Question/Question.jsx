@@ -1,5 +1,5 @@
 import React from 'react';
-import { QuestionContainer, QuestionText, SubText } from './styles';
+import { QuestionContainer, QuestionText, SubText } from './Question.Style';
 
 const Question = ({ isVisible, questionText, subText }) => {
   return (

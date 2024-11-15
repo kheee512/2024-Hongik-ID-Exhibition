@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from './styles';
+import { Button } from './StartButton.Style';
 
 const StartButton = ({ onClick, isVisible }) => {
   return (

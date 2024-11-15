@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import CircleButton from '../components/CircleButton';
-import StartButton from '../components/StartButton';
-import Question from '../components/Question';
+import CircleButton from '../components/CircleButton/CircleButton';
+import StartButton from '../components/StartButton/StartButton';
+import Question from '../components/Question/Question';
 import redCircle from '../images/redCircle.png';
+import blueCircle from '../images/blueCircle.png';
+import greenCircle from '../images/greenCircle.png';
+import orangeCircle from '../images/orangeCircle.png';
 import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
@@ -23,6 +26,24 @@ const Container = styled.div`
   opacity: ${props => props.isFading ? 0 : 1};
 `;
 
+const CIRCLE_DIAMETER = 200;
+
+const ScrollContainer = styled.div`
+  display: flex;
+  
+  width: 100%;
+  
+  gap: 100px;
+  
+  
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+`;
+
 const ButtonContainer = styled.div`
   position: relative;
   display: flex;
@@ -37,6 +58,7 @@ const Home = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [showQuestion, setShowQuestion] = useState(false);
   const [isFading, setIsFading] = useState(false);
+  const [selectedCircle, setSelectedCircle] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -49,9 +71,10 @@ const Home = () => {
     }
   }, [isExpanded]);
 
-  const handleCircleClick = () => {
+  const handleCircleClick = (index) => {
     if (!showStartButton && !isExpanded) {
       setShowStartButton(true);
+      setSelectedCircle(index);
     } else if (showQuestion) {
       setIsFading(true);
       setTimeout(() => {
@@ -70,11 +93,32 @@ const Home = () => {
   return (
     <Container isFading={isFading}>
       <ButtonContainer>
-        <CircleButton 
-          onClick={handleCircleClick}
-          isExpanded={isExpanded}
-          imageSrc={redCircle}
-        />
+        <ScrollContainer>
+          <CircleButton 
+            onClick={() => handleCircleClick(0)}
+            isExpanded={isExpanded}
+            isSelected={selectedCircle === 0}
+            imageSrc={redCircle}
+          />
+          <CircleButton 
+            onClick={() => handleCircleClick(1)}
+            isExpanded={isExpanded}
+            isSelected={selectedCircle === 1}
+            imageSrc={blueCircle}
+          />
+          <CircleButton 
+            onClick={() => handleCircleClick(2)}
+            isExpanded={isExpanded}
+            isSelected={selectedCircle === 2}
+            imageSrc={greenCircle}
+          />
+          <CircleButton 
+            onClick={() => handleCircleClick(3)}
+            isExpanded={isExpanded}
+            isSelected={selectedCircle === 3}
+            imageSrc={orangeCircle}
+          />
+        </ScrollContainer>
         <StartButton 
           onClick={handleStartClick}
           isVisible={showStartButton}
