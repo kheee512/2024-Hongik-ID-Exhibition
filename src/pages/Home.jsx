@@ -75,7 +75,7 @@ const CircleButtonWrapper = styled.div`
 `;
 
 const Home = () => {
-  const [showStartButton, setShowStartButton] = useState(true);
+  const [showStartButton, setShowStartButton] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [showQuestion, setShowQuestion] = useState(false);
   const [isFading, setIsFading] = useState(false);
