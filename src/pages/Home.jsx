@@ -4,6 +4,7 @@ import CircleButton from '../components/CircleButton';
 import StartButton from '../components/StartButton';
 import Question from '../components/Question';
 import redCircle from '../images/redCircle.png';
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
   background-color: #ECECEC;
@@ -18,6 +19,8 @@ const Container = styled.div`
   width: 100%;
   top: 0;
   left: 0;
+  transition: opacity 0.5s ease-in-out;
+  opacity: ${props => props.isFading ? 0 : 1};
 `;
 
 const ButtonContainer = styled.div`
@@ -33,6 +36,8 @@ const Home = () => {
   const [showStartButton, setShowStartButton] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [showQuestion, setShowQuestion] = useState(false);
+  const [isFading, setIsFading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isExpanded) {
@@ -47,6 +52,11 @@ const Home = () => {
   const handleCircleClick = () => {
     if (!showStartButton && !isExpanded) {
       setShowStartButton(true);
+    } else if (showQuestion) {
+      setIsFading(true);
+      setTimeout(() => {
+        navigate('/chat');
+      }, 500);
     }
   };
 
@@ -58,7 +68,7 @@ const Home = () => {
   };
 
   return (
-    <Container>
+    <Container isFading={isFading}>
       <ButtonContainer>
         <CircleButton 
           onClick={handleCircleClick}
