@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import userProfile from '../../images/userprofile.png';  // 사용자 프로필 이미지 경로
+import aiProfile from '../../images/aiprofile.png';     // AI 프로필 이미지 경로
 import {
   ChatWindow,
   Header,
@@ -88,7 +90,7 @@ const ChatModal = ({ selectedCircleImage, selectedQuestion }) => {
           }]
         }));
 
-        console.log('=== 토큰 사용량 업데이트 ===');
+        console.log('=== 토큰 사���량 업데이트 ===');
         console.log('Current Conversation Usage:', response.usage);
         console.log('Total Token Usage:', tokenUsage.total + response.usage.total_tokens);
       }
@@ -126,11 +128,25 @@ const ChatModal = ({ selectedCircleImage, selectedQuestion }) => {
                 <MessageBubble isUser={message.isUser}>
                   {message.text}
                 </MessageBubble>
-                <Profile isUser={message.isUser} />
+                <Profile 
+                  isUser={message.isUser} 
+                  style={{
+                    backgroundImage: `url(${userProfile})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
+                  }}
+                />
               </>
             ) : (
               <>
-                <Profile isUser={message.isUser} />
+                <Profile 
+                  isUser={message.isUser}
+                  style={{
+                    backgroundImage: `url(${aiProfile})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
+                  }}
+                />
                 <MessageBubble isUser={message.isUser}>
                   {message.text}
                 </MessageBubble>
