@@ -144,6 +144,7 @@ const Home = () => {
     centerPadding: "0px",
     slidesToShow: 3,
     speed: 500,
+    arrows: false,
     focusOnSelect: true,
     beforeChange: (current, next) => {
       // 4번째 슬라이드(index: 3)에서 다음으로 넘어가려고 할 때 방지
