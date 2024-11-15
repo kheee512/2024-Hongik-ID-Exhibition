@@ -90,7 +90,7 @@ const ChatModal = ({ selectedCircleImage, selectedQuestion }) => {
           }]
         }));
 
-        console.log('=== 토큰 사���량 업데이트 ===');
+        console.log('=== 토큰 사용량 업데이트 ===');
         console.log('Current Conversation Usage:', response.usage);
         console.log('Total Token Usage:', tokenUsage.total + response.usage.total_tokens);
       }
