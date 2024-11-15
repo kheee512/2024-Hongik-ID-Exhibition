@@ -118,13 +118,14 @@ const ChatModal = ({ selectedCircleImage, selectedQuestion }) => {
           flexDirection: 'column', 
           alignItems: 'center', 
           gap: '20px', 
-          paddingTop: '60px'
+          paddingTop: '40px'
         }}>
           <CircleButton
             imageSrc={selectedCircleImage}
             isExpanded={false}
             isSelected={false}
             size="80px"
+            noShadow={true}
           />
           <span style={{ 
             fontSize: '14px', 
