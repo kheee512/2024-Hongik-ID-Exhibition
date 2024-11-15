@@ -15,8 +15,9 @@ export const Header = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 0;
+  padding: 15px 0;
   border-bottom: 1px solid #eee;
+  min-height: 80px;
 `;
 
 export const ChatArea = styled.div`

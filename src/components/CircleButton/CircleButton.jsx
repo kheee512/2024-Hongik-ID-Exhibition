@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, CircleImage } from './CircleButton.Style';
 
-const CircleButton = ({ onClick, isExpanded, imageSrc, isSelected }) => {
+const CircleButton = ({ onClick, isExpanded, imageSrc, isSelected, size }) => {
   return (
     <Button onClick={onClick} $isExpanded={isExpanded} $isSelected={isSelected}>
       <CircleImage 
@@ -9,6 +9,7 @@ const CircleButton = ({ onClick, isExpanded, imageSrc, isSelected }) => {
         alt="Circle" 
         $isExpanded={isExpanded}
         $isSelected={isSelected}
+        $size={size}
       />
     </Button>
   );
