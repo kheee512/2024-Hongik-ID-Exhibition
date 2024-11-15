@@ -69,12 +69,18 @@ const slideData = [
   ];
   
 
+const CircleButtonWrapper = styled.div`
+  opacity: ${props => props.fadeOut ? 0 : 1};
+  transition: opacity 0.5s ease-in-out;
+`;
+
 const Home = () => {
   const [showStartButton, setShowStartButton] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [showQuestion, setShowQuestion] = useState(false);
   const [isFading, setIsFading] = useState(false);
   const [selectedCircle, setSelectedCircle] = useState(null);
+  const [doubleSelected, setDoubleSelected] = useState(false);
   const navigate = useNavigate();
 
   // 각 원형 버튼별 질문 데이터 추가
@@ -109,17 +115,23 @@ const Home = () => {
 
   const handleCircleClick = (index) => {
     if (!isExpanded) {
-      if (selectedCircle !== null && selectedCircle !== index) {
+      if (selectedCircle === index) {
+        // 같은 원을 두 번 클릭했을 때
+        if (!doubleSelected) {
+          setDoubleSelected(true);
+          setShowStartButton(true);
+        } else {
+          // 세 번째 클릭 시
+          setDoubleSelected(false);
+          setShowStartButton(false);
+        }
+      } else {
         // 다른 원을 선택했을 때
         setShowStartButton(false);
+        setDoubleSelected(false);
         setTimeout(() => {
           setSelectedCircle(index);
-          setShowStartButton(true);
-        }, 800); // transition 시간과 맞춤
-      } else if (selectedCircle === null) {
-        // 처음 원을 선택했을 때
-        setShowStartButton(true);
-        setSelectedCircle(index);
+        }, 800);
       }
     } else if (showQuestion) {
       setIsFading(true);
@@ -168,13 +180,17 @@ const Home = () => {
             <StyledSlider {...settings}>
             {slideData.map((slide, index) => (
                 slide.image ? (
-                <CircleButton
-                    key={slide.id}
+                <CircleButtonWrapper 
+                  key={slide.id} 
+                  fadeOut={doubleSelected && selectedCircle !== index}
+                >
+                  <CircleButton
                     onClick={() => handleCircleClick(index)}
                     isExpanded={isExpanded}
                     isSelected={selectedCircle === index}
                     imageSrc={slide.image}
-                />
+                  />
+                </CircleButtonWrapper>
                 ) : (
                 <div key={slide.id} style={{ width: 0 }} />
                 )
