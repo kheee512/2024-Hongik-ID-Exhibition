@@ -19,6 +19,7 @@ import { useNavigate } from 'react-router-dom';
 import zoomIcon from '../../images/zoom.png';
 import xIcon from '../../images/x.png';
 import iconsIcon from '../../images/icons.png';
+import { LoadingBubble } from './ChatModal.Style';
 
 const ChatModal = ({ selectedCircle, onNavigateHome }) => {
   const [messages, setMessages] = useState([]);
@@ -177,6 +178,23 @@ const ChatModal = ({ selectedCircle, onNavigateHome }) => {
             )}
           </MessageContainer>
         ))}
+        {isLoading && (
+          <MessageContainer isUser={false}>
+            <Profile 
+              isUser={false}
+              style={{
+                backgroundImage: `url(${aiProfile})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+              }}
+            />
+            <LoadingBubble isUser={false}>
+              <span className="dot"></span>
+              <span className="dot"></span>
+              <span className="dot"></span>
+            </LoadingBubble>
+          </MessageContainer>
+        )}
       </ChatArea>
       <InputArea>
         <InputUpperArea>

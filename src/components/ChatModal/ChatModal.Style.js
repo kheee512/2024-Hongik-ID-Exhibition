@@ -108,3 +108,30 @@ export const IconButton = styled.img`
     transform: rotate(90deg);
   `}
 `;
+
+export const LoadingBubble = styled(MessageBubble)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  min-width: 60px;
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    background: #666;
+    border-radius: 50%;
+    animation: bounce 1.4s infinite ease-in-out;
+    display: inline-block;
+  }
+
+  .dot:nth-child(1) { animation-delay: 0s; }
+  .dot:nth-child(2) { animation-delay: 0.2s; }
+  .dot:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes bounce {
+    0%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-6px); }
+  }
+`;
