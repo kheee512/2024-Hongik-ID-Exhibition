@@ -37,6 +37,8 @@ export const Profile = styled.div`
   border-radius: 50%;
   background-color: ${props => props.isUser ? '#4A90E2' : '#E2E2E2'};
   margin: ${props => props.isUser ? '0 0 0 10px' : '0 10px 0 0'};
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);  // 기본 그림자 추가
+  transition: box-shadow 0.2s ease-in-out;     // 부드러운 그림자 전환 효과
 `;
 
 export const MessageBubble = styled.div`
