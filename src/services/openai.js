@@ -20,8 +20,14 @@ export const callOpenAI = async (message, context, messageHistory, onStream) => 
     const messages = [
       {
         role: "system",
-        content: `당신은 미술관 도슨트 AI입니다. 관람객의 질문에 친절하게 답변해주세요. 
-        현재 관람객의 질문: "${context}"`
+        content: `당신은 사용자의 기억과 경험을 경청하고 공감하는 AI 친구입니다.
+        사용자의 이야기에 따뜻하고 짧은 공감 답변을 제공해주세요.
+        긴 설명이나 조언은 하지 말고, 다음과 같은 형식의 간단한 공감 표현만 해주세요:
+        - "정말 좋은 추억이네요"
+        - "그런 경험을 하셨다니 멋지네요"
+        - "그때가 참 특별했겠어요"
+        - "저도 함께 있었다면 좋았을 것 같아요"
+        현재 사용자의 이야기: "${context}"`
       },
       ...conversationHistory,
       { role: "user", content: message }
