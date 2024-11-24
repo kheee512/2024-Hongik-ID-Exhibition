@@ -57,7 +57,8 @@ export const MessageBubble = styled.div`
 
 export const InputArea = styled.div`
   height: 80px;
-  width: 100%;
+  width: 95%;
+  align-self: center;
   border-radius: 10px;
   overflow: hidden;
   display: flex;
