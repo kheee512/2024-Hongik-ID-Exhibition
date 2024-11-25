@@ -54,6 +54,8 @@ const StyledSlider = styled(Slider)`
     display: flex;
     justify-content: center;
     align-items: center;
+    transform: scale(1);
+    transition: transform 0.3s ease;
   }
   
   .slick-center {
@@ -64,6 +66,12 @@ const StyledSlider = styled(Slider)`
   .slick-list {
     overflow: visible;
   }
+
+  // 터치 스와이프 활성화
+  touch-action: pan-x;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
 `;
 
 const CircleButtonWrapper = styled.div`
@@ -82,6 +90,7 @@ const Home = () => {
   const location = useLocation();
   const [isEntering, setIsEntering] = useState(true);
   const [prevTimestamp, setPrevTimestamp] = useState(null);
+  const sliderRef = React.useRef(null);
 
   useEffect(() => {
     if (location.state?.isNavigatingBack) {
@@ -112,6 +121,35 @@ const Home = () => {
       return () => clearTimeout(timer);
     }
   }, [isExpanded]);
+
+  useEffect(() => {
+    const handleWheel = (e) => {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+        e.preventDefault();
+        
+        // deltaX 값이 특정 임계값을 넘을 때만 슬라이드 이동
+        const threshold = 50;
+        if (Math.abs(e.deltaX) > threshold) {
+          if (e.deltaX > 0) {
+            sliderRef.current.slickNext();
+          } else {
+            sliderRef.current.slickPrev();
+          }
+        }
+      }
+    };
+
+    const sliderElement = document.querySelector('.slick-list');
+    if (sliderElement) {
+      sliderElement.addEventListener('wheel', handleWheel, { passive: false });
+    }
+
+    return () => {
+      if (sliderElement) {
+        sliderElement.removeEventListener('wheel', handleWheel);
+      }
+    };
+  }, []);
 
   const handleCircleClick = (index) => {
     if (!isExpanded) {
@@ -179,13 +217,17 @@ const Home = () => {
       if (!isExpanded) {
         setShowStartButton(false);
       }
-    }
+    },
+    swipeToSlide: true,
+    touchThreshold: 10,
+    draggable: true,
+    swipe: true,
   };
 
   return (
     <Container isFading={isFading} isEntering={isEntering}>
       <ButtonContainer>
-        <StyledSlider {...settings}>
+        <StyledSlider ref={sliderRef} {...settings}>
           {slideData.map((slide, index) => (
             slide.homeImage ? (
             <CircleButtonWrapper 

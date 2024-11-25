@@ -41,7 +41,7 @@ export const Button = styled.button`
   border: none;
   padding: 0;
   cursor: pointer;
-  transition: transform 0.2s ease, opacity 1s ease;
+  transition: transform 0.5s ease, opacity 1s ease;
   position: relative;
   z-index: 1;
   opacity: ${props => (!props.$isSelected && props.$isExpanded) ? 0 : 1};
