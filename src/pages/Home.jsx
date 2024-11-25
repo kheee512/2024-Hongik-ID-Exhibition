@@ -214,7 +214,8 @@ const Home = () => {
       <Question 
         isVisible={showQuestion}
         questionText={selectedCircle !== null ? circleData[selectedCircle].question.main : ""}
-        subText={selectedCircle !== null ? circleData[selectedCircle].question.sub : ""}
+        subText={selectedCircle !== null ? 
+          circleData[selectedCircle === 3 ? 0 : selectedCircle + 1].question.main : ""}
       />
     </Container>
   );

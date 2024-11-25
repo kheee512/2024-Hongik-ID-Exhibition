@@ -30,7 +30,6 @@ export const circleData = [
     },
     question: {
       main: "관람하고 있는 이 순간 어떤 기분이 드나요?",
-      sub: "관람하면서 떠오른 \"찰나의 순간\"이 있나요?"
     }
   },
   {
@@ -44,7 +43,6 @@ export const circleData = [
     },
     question: {
       main: "관람하면서 떠오른 \"찰나의 순간\"이 있나요?",
-      sub: "담다'에 있는 당신의 모습은 어떤 모습인가요?"
     }
   },
   {
@@ -58,7 +56,6 @@ export const circleData = [
     },
     question: {
       main: "담다'에 있는 당신의 모습은 어떤 모습인가요?",
-      sub: "전시 관람 후 남기고 싶은 한마디 있을까요?"
     }
   },
   {
@@ -72,7 +69,6 @@ export const circleData = [
     },
     question: {
       main: "전시 관람 후 남기고 싶은 한마디 있을까요?",
-      sub: "관람 하고 있는 이 순간 어떤 기분이 드나요?"
     }
   }
 ];
