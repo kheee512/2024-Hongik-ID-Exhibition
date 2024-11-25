@@ -22,7 +22,7 @@ export const Header = styled.div`
 export const ChatArea = styled.div`
   flex: 1;
   overflow-y: auto;
-  padding: 20px 0;
+  padding: 20px 30px;
   width: 95%;
   align-self: center;
 `;
@@ -50,8 +50,8 @@ export const MessageBubble = styled.div`
   align-self: center;
   border-radius: 16px;
   background-color: ${props => props.isUser ? '#FFFFFF' : '#ECECEC'};
-  color: #333;  // 텍스트 색상을 검정색 계열로 통일
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);  // 약간의 그림자 추가
+  color: #333;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);  // 그림자 강도와 크기를 증가
 `;
 
 export const InputArea = styled.div`
