@@ -1,79 +1,78 @@
-import redCircle from '../images/redCircle.png';
-import blueCircle from '../images/blueCircle.png';
-import greenCircle from '../images/greenCircle.png';
-import orangeCircle from '../images/orangeCircle.png';
-import redCircle2 from '../images/redCircle2.png';
-import blueCircle2 from '../images/blueCircle2.png';
-import greenCircle2 from '../images/greenCircle2.png';
-import orangeCircle2 from '../images/orangeCircle2.png';
+import blueChatAI from '../images/new/blue/blueChatAI.svg'
+import blueChatUser from '../images/new/blue/blueChatUser.svg'
+import blueHome from '../images/new/blue/blueHome.svg'
+import blueMain from '../images/new/blue/blueMain.svg'
+
+import greenChatAI from '../images/new/green/greenChatAI.svg'
+import greenChatUser from '../images/new/green/greenChatUser.svg'
+import greenHome from '../images/new/green/greenHome.svg'
+import greenMain from '../images/new/green/greenMain.svg'
+
+import yellowChatAI from '../images/new/yellow/yellowChatAI.svg'
+import yellowChatUser from '../images/new/yellow/yellowChatUser.svg'
+import yellowHome from '../images/new/yellow/yellowHome.svg'
+import yellowMain from '../images/new/yellow/yellowMain.svg'
+
+import redChatAI from '../images/new/red/redChatAI.svg'
+import redChatUser from '../images/new/red/redChatUser.svg'
+import redHome from '../images/new/red/redHome.svg'
+import redMain from '../images/new/red/redMain.svg'
 
 export const circleData = [
   {
-    id: 'redCircle',
-    image: redCircle,
-    chatImage: redCircle2,
+    id: 'greenCircle',
+    homeImage: greenHome,
+    mainImage: greenMain,
+    chatAIImage: greenChatAI,
+    chatUserImage: greenChatUser,
     colors: {
-      theme: '#FF9999',
-      gradient: {
-        from: '#FF999933',
-        to: '#ECECEC33',
-        direction: 'to bottom'
-      }
+      theme: '#084941',
     },
     question: {
-      main: "오늘 가장 기억에 남은 순간은?",
-      sub: "전시중 가장 인상 깊었던 것은?"
+      main: "관람하고 있는 이 순간 어떤 기분이 드나요?",
+      sub: "관람하면서 떠오른 \"찰나의 순간\"이 있나요?"
     }
   },
   {
     id: 'blueCircle',
-    image: blueCircle,
-    chatImage: blueCircle2,
+    homeImage: blueHome,
+    mainImage: blueMain,
+    chatAIImage: blueChatAI,
+    chatUserImage: blueChatUser,
     colors: {
-      theme: '#95A0FE',
-      gradient: {
-        from: '#95A0FE33',
-        to: '#ECECEC33',
-        direction: 'to bottom'
-      }
+      theme: '#1E3494',
     },
     question: {
-      main: "이 작품을 통해 어떤 감정을 느꼈나요?",
-      sub: "당신의 솔직한 감정을 들려주세요"
+      main: "관람하면서 떠오른 \"찰나의 순간\"이 있나요?",
+      sub: "담다'에 있는 당신의 모습은 어떤 모습인가요?"
     }
   },
   {
-    id: 'greenCircle',
-    image: greenCircle,
-    chatImage: greenCircle2,
+    id: 'yellowCircle',
+    homeImage: yellowHome,
+    mainImage: yellowMain,
+    chatAIImage: yellowChatAI,
+    chatUserImage: yellowChatUser,
     colors: {
-      theme: '#BAFFCB',
-      gradient: {
-        from: '#BAFFCB33',
-        to: '#ECECEC33',
-        direction: 'to bottom'
-      }
+      theme: '#FFA319',
     },
     question: {
-      main: "이 작품이 당신에게 어떤 의미인가요?",
-      sub: "당신만의 해석을 들려주세요"
+      main: "담다'에 있는 당신의 모습은 어떤 모습인가요?",
+      sub: "전시 관람 후 남기고 싶은 한마디 있을까요?"
     }
   },
   {
-    id: 'orangeCircle',
-    image: orangeCircle,
-    chatImage: orangeCircle2,
+    id: 'redCircle',
+    homeImage: redHome,
+    mainImage: redMain,
+    chatAIImage: redChatAI,
+    chatUserImage: redChatUser,
     colors: {
-      theme: '#FFB55A',
-      gradient: {
-        from: '#FFB55A33',
-        to: '#ECECEC33',
-        direction: 'to bottom'
-      }
+      theme: '#8C2230',
     },
     question: {
-      main: "이 작품을 누구와 함께 보고 싶나요?",
-      sub: "그 이유는 무엇인가요?"
+      main: "전시 관람 후 남기고 싶은 한마디 있을까요?",
+      sub: "관람 하고 있는 이 순간 어떤 기분이 드나요?"
     }
   }
 ];

@@ -1,6 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
-import userProfile from '../../images/userprofile.png';  // 사용자 프로필 이미지 경로
-import aiProfile from '../../images/aiprofile.png';     // AI 프로필 이미지 경로
+import React, { useState, useEffect, useRef } from 'react';     // AI 프로필 이미지 경로
 import back from '../../images/back.svg';  // 파일 상단에 추가
 import {
   ChatWindow,
@@ -21,7 +19,7 @@ import { useNavigate } from 'react-router-dom';
 import zoomIcon from '../../images/zoom.png';
 import xIcon from '../../images/x.png';
 import iconsIcon from '../../images/icons.png';
-import { LoadingBubble } from './ChatModal.Style';
+
 
 const ChatModal = ({ selectedCircle, onNavigateHome }) => {
   const [messages, setMessages] = useState([]);
@@ -118,7 +116,7 @@ const ChatModal = ({ selectedCircle, onNavigateHome }) => {
           paddingTop: '20px'
         }}>
           <CircleButton
-            imageSrc={selectedCircle.chatImage}
+            imageSrc={selectedCircle.mainImage}
             isExpanded={false}
             isSelected={false}
             size="8vw"
@@ -146,7 +144,7 @@ const ChatModal = ({ selectedCircle, onNavigateHome }) => {
                 <Profile 
                   isUser={message.isUser} 
                   style={{
-                    backgroundImage: `url(${userProfile})`,
+                    backgroundImage: `url(${selectedCircle.chatUserImage})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
                   }}
@@ -157,7 +155,7 @@ const ChatModal = ({ selectedCircle, onNavigateHome }) => {
                 <Profile 
                   isUser={message.isUser}
                   style={{
-                    backgroundImage: `url(${aiProfile})`,
+                    backgroundImage: `url(${selectedCircle.chatAIImage})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
                   }}

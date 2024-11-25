@@ -4,7 +4,7 @@ export const ChatWindow = styled.div`
   width: 70vw;
   height: 40vw;
   background-color: #F5F5F5;
-  border-radius: 30px;
+  border-radius: 50px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
   display: flex;
@@ -55,12 +55,12 @@ export const InputArea = styled.div`
   height: 4.17vw;
   width: 95%;
   align-self: center;
-  border-radius: 0.8vw;
+  border-radius: 30px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   margin-top: 1.04vw;
-  margin-bottom: 1.04vw;
+  margin-bottom: 2vw;
 `;
 
 export const InputUpperArea = styled.div`
@@ -69,7 +69,7 @@ export const InputUpperArea = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 1vw;
 `;
 
 export const InputLowerArea = styled.div`
@@ -78,22 +78,22 @@ export const InputLowerArea = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-sizing: border-box;
   background-color: ${props => props.$selectedCircle?.colors?.theme || '#F0F0F0'};
   position: relative;
-  padding: 0 0.52vw;
+  padding: 0 1vw;
 
   .line {
-    width: 57vw;
+    width: 100%;
     height: 0.1vw;
     background-color: #FFFFFF;
-    margin-left: 1.04vw;
+    margin-right: 1vw;
   }
 
   .icons-image {
     width: auto;     // 너비를 자동으로 설정
     height: 50%;     // 컨테이너 높이의 80%로 설정
     object-fit: contain;  // 이미지 비율 유지
-    margin-right: 1.56vw;
   }
 `;
 

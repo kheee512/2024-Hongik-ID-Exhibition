@@ -49,8 +49,8 @@ export const Button = styled.button`
 export const CircleImage = styled.img`
   animation: ${fadeIn} 1.5s ease-in;
   border-radius: 50%;
-  width: ${props => props.$size || '15vw'};
-  height: ${props => props.$size || '15vw'};
+  width: ${props => props.$size || '20vw'};
+  height: ${props => props.$size || '20vw'};
   filter: ${props => props.$noShadow ? 'none' : 'drop-shadow(0 6px 8px rgba(0, 0, 0, 0.3))'};
   animation: ${props => {
     if (props.$isExpanded) {

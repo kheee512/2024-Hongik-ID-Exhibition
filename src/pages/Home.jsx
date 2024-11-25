@@ -187,7 +187,7 @@ const Home = () => {
       <ButtonContainer>
         <StyledSlider {...settings}>
           {slideData.map((slide, index) => (
-            slide.image ? (
+            slide.homeImage ? (
             <CircleButtonWrapper 
               key={slide.id} 
               fadeOut={doubleSelected && selectedCircle !== index}
@@ -196,7 +196,9 @@ const Home = () => {
                 onClick={() => handleCircleClick(index)}
                 isExpanded={isExpanded}
                 isSelected={selectedCircle === index}
-                imageSrc={slide.image}
+                imageSrc={doubleSelected && selectedCircle === index ? 
+                  circleData[index].mainImage : 
+                  slide.homeImage}
               />
             </CircleButtonWrapper>
             ) : (
