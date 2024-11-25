@@ -14,7 +14,7 @@ const expandAnimation = keyframes`
     transform: scale(1) translateY(0);
   }
   to {
-    transform: scale(2.3) translateY(20vh);
+    transform: scale(${props => props.$isMainImage ? '1.8' : '2.3'}) translateY(20vh);
   }
 `;
 
@@ -56,12 +56,12 @@ export const Button = styled.button`
 `;
 
 export const CircleImage = styled.img`
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   border-radius: 50%;
-  width: ${props => props.$size || '20vw'};
-  height: ${props => props.$size || '20vw'};
+  width: ${props => props.$isMainImage ? `calc(${props.$size || '20vw'} * 0.8)` : props.$size || '20vw'};
+  height: ${props => props.$isMainImage ? `calc(${props.$size || '20vw'} * 0.8)` : props.$size || '20vw'};
   filter: ${props => props.$noShadow ? 'none' : 'drop-shadow(0 6px 8px rgba(0, 0, 0, 0.3))'};
   animation: ${props => {
     if (props.$isExpanded) {
@@ -78,4 +78,7 @@ export const ImageContainer = styled.div`
   position: relative;
   width: ${props => props.$size || '20vw'};
   height: ${props => props.$size || '20vw'};
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `; 

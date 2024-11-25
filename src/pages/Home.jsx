@@ -199,6 +199,7 @@ const Home = () => {
                 imageSrc={doubleSelected && selectedCircle === index ? 
                   circleData[index].mainImage : 
                   slide.homeImage}
+                isMainImage={doubleSelected && selectedCircle === index}
               />
             </CircleButtonWrapper>
             ) : (
