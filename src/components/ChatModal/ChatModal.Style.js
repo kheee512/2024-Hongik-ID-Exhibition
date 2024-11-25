@@ -1,13 +1,9 @@
 import styled from 'styled-components';
 
 export const ChatWindow = styled.div`
-  width: 1000px;
-  height: 600px;
-  background: linear-gradient(
-    to bottom,
-    ${props => props.$selectedCircle?.colors?.gradient?.from || '#FFFFFF33'}, 
-    ${props => props.$selectedCircle?.colors?.gradient?.to || '#ECECEC33'}
-  );
+  width: 70vw;
+  height: 40vw;
+  background-color: #F5F5F5;
   border-radius: 30px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
@@ -20,8 +16,8 @@ export const Header = styled.div`
   justify-content: center;
   align-items: center;
   padding: 15px 0;
-  border-bottom: 1px solid #eee;
-  min-height: 80px;
+  
+  min-height: 4.17vw;
 `;
 
 export const ChatArea = styled.div`
@@ -37,11 +33,11 @@ export const MessageContainer = styled.div`
 `;
 
 export const Profile = styled.div`
-  width: 40px;
-  height: 40px;
+  width: 2.08vw;
+  height: 2.08vw;
   border-radius: 50%;
   background-color: ${props => props.isUser ? '#4A90E2' : '#E2E2E2'};
-  margin: ${props => props.isUser ? '0 0 0 10px' : '0 10px 0 0'};
+  margin: ${props => props.isUser ? '0 0 0 0.52vw' : '0 0.52vw 0 0'};
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);  // 기본 그림자 추가
   transition: box-shadow 0.2s ease-in-out;     // 부드러운 그림자 전환 효과
 `;
@@ -56,15 +52,15 @@ export const MessageBubble = styled.div`
 `;
 
 export const InputArea = styled.div`
-  height: 80px;
+  height: 4.17vw;
   width: 95%;
   align-self: center;
-  border-radius: 10px;
+  border-radius: 0.8vw;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 1.04vw;
+  margin-bottom: 1.04vw;
 `;
 
 export const InputUpperArea = styled.div`
@@ -78,34 +74,46 @@ export const InputUpperArea = styled.div`
 
 export const InputLowerArea = styled.div`
   width: 100%;
-  height: 40px;
+  height: 2.08vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: ${props => props.$selectedCircle?.colors?.theme || '#F0F0F0'};
   position: relative;
-  padding: 0 10px;
+  padding: 0 0.52vw;
 
   .line {
-    width: 800px;
-    height: 2px;
+    width: 57vw;
+    height: 0.1vw;
     background-color: #FFFFFF;
-    margin-left: 20px;
+    margin-left: 1.04vw;
   }
 
   .icons-image {
     width: auto;     // 너비를 자동으로 설정
     height: 50%;     // 컨테이너 높이의 80%로 설정
     object-fit: contain;  // 이미지 비율 유지
-    margin-right: 30px;
+    margin-right: 1.56vw;
   }
 `;
 
 export const IconButton = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 1.04vw;
+  height: 1.04vw;
   cursor: pointer;
   ${props => props.rotate && `
     transform: rotate(90deg);
   `}
+`;
+
+export const BackButton = styled.img`
+  width: 2.4rem;
+  height: 2.4rem;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  position: absolute;
+  right: 16rem;
+  &:hover {
+    transform: scale(1.1);
+  }
 `;

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import userProfile from '../../images/userprofile.png';  // 사용자 프로필 이미지 경로
 import aiProfile from '../../images/aiprofile.png';     // AI 프로필 이미지 경로
+import back from '../../images/back.svg';  // 파일 상단에 추가
 import {
   ChatWindow,
   Header,
@@ -11,7 +12,8 @@ import {
   InputArea,
   InputUpperArea,
   InputLowerArea,
-  IconButton
+  IconButton,
+  BackButton
 } from './ChatModal.Style';
 import CircleButton from '../CircleButton/CircleButton';
 import { callOpenAI } from '../../services/openai';
@@ -102,6 +104,11 @@ const ChatModal = ({ selectedCircle, onNavigateHome }) => {
 
   return (
     <ChatWindow $selectedCircle={selectedCircle}>
+      <BackButton 
+        src={back} 
+        alt="back to home" 
+        onClick={handleHomeClick}
+      />
       <Header>
         <div style={{ 
           display: 'flex', 
@@ -114,12 +121,12 @@ const ChatModal = ({ selectedCircle, onNavigateHome }) => {
             imageSrc={selectedCircle.chatImage}
             isExpanded={false}
             isSelected={false}
-            size="80px"
+            size="8vw"
             noShadow={true}
             onClick={handleHomeClick}
           />
           <span style={{ 
-            fontSize: '14px', 
+            fontSize: '1.2vw', 
             color: '#666', 
             textAlign: 'center',
             marginBottom: '10px'
@@ -183,6 +190,7 @@ const ChatModal = ({ selectedCircle, onNavigateHome }) => {
             style={{
               flex: 1,
               padding: '10px',
+              fontSize: '1vw',
               border: 'none',
               borderRadius: '20px',
               outline: 'none',
