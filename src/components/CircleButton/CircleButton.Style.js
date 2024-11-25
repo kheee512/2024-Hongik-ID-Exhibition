@@ -14,7 +14,7 @@ const expandAnimation = keyframes`
     transform: scale(1) translateY(0);
   }
   to {
-    transform: scale(3) translateY(17vh);
+    transform: scale(2.3) translateY(20vh);
   }
 `;
 
@@ -70,6 +70,8 @@ export const CircleImage = styled.img`
     return imageFadeIn;
   }} 1s ease-in-out forwards;
   transform-origin: center center;
+
+  
 `;
 
 export const ImageContainer = styled.div`
