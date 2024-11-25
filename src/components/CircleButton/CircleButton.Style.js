@@ -47,11 +47,11 @@ export const Button = styled.button`
   opacity: ${props => (!props.$isSelected && props.$isExpanded) ? 0 : 1};
 
   &:hover {
-    transform: ${props => props.$isExpanded ? 'none' : 'scale(1.05)'};
+    transform: ${props => props.$isExpanded ? 'none' : 'scale(1.1)'};
   }
 
   &:active {
-    transform: ${props => props.$isExpanded ? 'none' : 'scale(0.95)'};
+    transform: ${props => props.$isExpanded ? 'none' : 'scale(1)'};
   }
 `;
 

@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const Button = styled.button`
-  width: 259px;
-  height: 50px;
+  width: 8.3vw;
+  height: 2.3vw;
   border: none;
-  border-radius: 25px;
+  border-radius: 3vw;
   background-color: #F5F5F5;
   color: black;
-  font-size: 18px;
+  font-size: 1.2vw;
   font-weight: bold;
   font-family: Helvetica;
   cursor: pointer;

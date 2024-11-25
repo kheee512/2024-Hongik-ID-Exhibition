@@ -11,7 +11,11 @@ import {
   InputUpperArea,
   InputLowerArea,
   IconButton,
-  BackButton
+  BackButton,
+  HeaderContent,
+  HeaderText,
+  ChatInput,
+  IconButtonStyled,
 } from './ChatModal.Style';
 import CircleButton from '../CircleButton/CircleButton';
 import { callOpenAI } from '../../services/openai';
@@ -107,32 +111,23 @@ const ChatModal = ({ selectedCircle, onNavigateHome }) => {
         alt="back to home" 
         onClick={handleHomeClick}
       />
+
       <Header>
-        <div style={{ 
-          display: 'flex', 
-          flexDirection: 'column', 
-          alignItems: 'center', 
-          gap: '20px', 
-          paddingTop: '20px'
-        }}>
+        <HeaderContent>
           <CircleButton
             imageSrc={selectedCircle.mainImage}
             isExpanded={false}
             isSelected={false}
-            size="8vw"
+            size="7vw"
             noShadow={true}
             onClick={handleHomeClick}
           />
-          <span style={{ 
-            fontSize: '1.2vw', 
-            color: '#666', 
-            textAlign: 'center',
-            marginBottom: '10px'
-          }}>
+          <HeaderText>
             {selectedCircle.question.main}
-          </span>
-        </div>
+          </HeaderText>
+        </HeaderContent>
       </Header>
+
       <ChatArea ref={chatAreaRef}>
         {messages.map((message, index) => (
           <MessageContainer key={index} isUser={message.isUser}>
@@ -168,16 +163,18 @@ const ChatModal = ({ selectedCircle, onNavigateHome }) => {
           </MessageContainer>
         ))}
       </ChatArea>
+
+      
       <InputArea>
         <InputUpperArea>
-          <IconButton 
+          <IconButtonStyled 
             onClick={handleSend}
             disabled={isLoading}
             src={zoomIcon} 
             alt="send" 
-            style={{ marginRight: '10px' }}
+            className="send-button"
           />
-          <input
+          <ChatInput
             type="text"
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
@@ -185,21 +182,12 @@ const ChatModal = ({ selectedCircle, onNavigateHome }) => {
               if (e.key === 'Enter') handleSend();
             }}
             placeholder="Search"
-            style={{
-              flex: 1,
-              padding: '10px',
-              fontSize: '1vw',
-              border: 'none',
-              borderRadius: '20px',
-              outline: 'none',
-              backgroundColor: '#FFFFFF'
-            }}
           />
-          <IconButton 
+          <IconButtonStyled 
             onClick={() => setInputText('')}
             src={xIcon} 
             alt="clear" 
-            style={{ marginLeft: '10px' }}
+            className="clear-button"
           />
         </InputUpperArea>
         <InputLowerArea $selectedCircle={selectedCircle}>

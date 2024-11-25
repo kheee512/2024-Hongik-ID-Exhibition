@@ -4,7 +4,7 @@ export const ChatWindow = styled.div`
   width: 70vw;
   height: 40vw;
   background-color: #F5F5F5;
-  border-radius: 50px;
+  border-radius: 2vw;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
   display: flex;
@@ -15,15 +15,16 @@ export const Header = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 15px 0;
-  
-  min-height: 4.17vw;
+  padding-top: 2vw;
+  padding-bottom: 1vw;
 `;
 
 export const ChatArea = styled.div`
   flex: 1;
   overflow-y: auto;
   padding: 20px 0;
+  width: 95%;
+  align-self: center;
 `;
 
 export const MessageContainer = styled.div`
@@ -44,7 +45,9 @@ export const Profile = styled.div`
 
 export const MessageBubble = styled.div`
   max-width: 60%;
-  padding: 12px 16px;
+  padding: 0.6vw 0.8vw;
+  font-size: 0.8vw;
+  align-self: center;
   border-radius: 16px;
   background-color: ${props => props.isUser ? '#FFFFFF' : '#ECECEC'};
   color: #333;  // 텍스트 색상을 검정색 계열로 통일
@@ -55,7 +58,7 @@ export const InputArea = styled.div`
   height: 4.17vw;
   width: 95%;
   align-self: center;
-  border-radius: 30px;
+  border-radius: 1vw;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -115,5 +118,38 @@ export const BackButton = styled.img`
   right: 16rem;
   &:hover {
     transform: scale(1.1);
+  }
+`;
+
+export const HeaderContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vw;
+`;
+
+export const HeaderText = styled.span`
+  font-size: 1.2vw;
+  color: #666;
+  text-align: center;
+  margin-bottom: 10px;
+`;
+
+export const ChatInput = styled.input`
+  flex: 1;
+  padding: 10px;
+  font-size: 1vw;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  background-color: #FFFFFF;
+`;
+
+export const IconButtonStyled = styled(IconButton)`
+  &.send-button {
+    margin-right: 10px;
+  }
+  &.clear-button {
+    margin-left: 10px;
   }
 `;
