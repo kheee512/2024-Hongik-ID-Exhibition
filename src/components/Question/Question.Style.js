@@ -29,15 +29,15 @@ export const QuestionContainer = styled.div`
 `;
 
 export const QuestionText = styled.h1`
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 1.5vw;
+  font-weight: 500;
   color: #333;
   margin-bottom: 12px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
 export const SubText = styled.p`
-  font-size: 16px;
+  font-size: 1vw;
   color: #8A8A8E;
   font-weight: normal;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
