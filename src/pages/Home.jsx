@@ -257,8 +257,7 @@ const Home = () => {
       <Question 
         isVisible={showQuestion}
         questionText={selectedCircle !== null ? circleData[selectedCircle].question.main : ""}
-        subText={selectedCircle !== null ? 
-          circleData[selectedCircle === 3 ? 0 : selectedCircle + 1].question.main : ""}
+        subText="전시에 기록하고 싶은 글을 남겨주세요."
       />
     </Container>
   );
