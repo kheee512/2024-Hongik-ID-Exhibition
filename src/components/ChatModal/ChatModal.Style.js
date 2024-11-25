@@ -9,6 +9,7 @@ export const ChatWindow = styled.div`
   padding: 20px;
   display: flex;
   flex-direction: column;
+  position: relative;
 `;
 
 export const Header = styled.div`
@@ -127,12 +128,13 @@ export const IconButton = styled.img`
 `;
 
 export const BackButton = styled.img`
-  width: 2.4rem;
-  height: 2.4rem;
+  width: 1vw;
+  height: 1vw;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
   position: absolute;
-  right: 16rem;
+  top: 1.5vw;
+  right: 1.5vw;
   &:hover {
     transform: scale(1.1);
   }

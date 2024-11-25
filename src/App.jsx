@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 import Home from './pages/Home';
 import Chat from './pages/AiChat';
@@ -13,13 +13,13 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <GlobalStyle />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/chat" element={<Chat />} />
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
