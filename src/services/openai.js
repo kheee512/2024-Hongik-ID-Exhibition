@@ -39,6 +39,7 @@ export const callOpenAI = async (message, context, messageHistory, onStream) => 
         - 불필요한 장황한 설명 피하기
         - 직접적인 해결책 제시 대신 함께 고민하는 자세
         - 따옴표 사용하지 않기
+        - 너무 긴 문장 자제
 
         4. 대화 예시
         - 그런 경험을 하셨을 때 많이 힘드셨겠어요
@@ -54,9 +55,9 @@ export const callOpenAI = async (message, context, messageHistory, onStream) => 
     ];
 
     const completion = await openai.chat.completions.create({
-      model: "gpt-4",
+      model: "gpt-4o",
       messages: messages,
-      temperature: 0.7,
+      temperature: 0.9,
       stream: true
     });
 
