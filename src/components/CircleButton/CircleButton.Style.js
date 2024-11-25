@@ -27,6 +27,15 @@ const fadeOutAnimation = keyframes`
   }
 `;
 
+const imageFadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
 export const Button = styled.button`
   background: none;
   border: none;
@@ -47,7 +56,9 @@ export const Button = styled.button`
 `;
 
 export const CircleImage = styled.img`
-  animation: ${fadeIn} 1.5s ease-in;
+  position: absolute;
+  top: 0;
+  left: 0;
   border-radius: 50%;
   width: ${props => props.$size || '20vw'};
   height: ${props => props.$size || '20vw'};
@@ -56,7 +67,13 @@ export const CircleImage = styled.img`
     if (props.$isExpanded) {
       return props.$isSelected ? expandAnimation : fadeOutAnimation;
     }
-    return 'none';
+    return imageFadeIn;
   }} 1s ease-in-out forwards;
   transform-origin: center center;
+`;
+
+export const ImageContainer = styled.div`
+  position: relative;
+  width: ${props => props.$size || '20vw'};
+  height: ${props => props.$size || '20vw'};
 `; 
