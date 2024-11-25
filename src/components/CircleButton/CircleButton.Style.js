@@ -57,9 +57,9 @@ export const Button = styled.button`
 
 export const CircleImage = styled.img`
   position: relative;
-  border-radius: 50%;
-  width: ${props => props.$isMainImage ? `calc(${props.$size || '20vw'} * 0.8)` : props.$size || '20vw'};
-  height: ${props => props.$isMainImage ? `calc(${props.$size || '20vw'} * 0.8)` : props.$size || '20vw'};
+  
+  width: ${props => props.$isMainImage ? `calc(${props.$size || '20vw'} * 0.8)` : props.$size || '13vw'};
+  height: ${props => props.$isMainImage ? `calc(${props.$size || '20vw'} * 0.8)` : props.$size || '13vw'};
   filter: ${props => props.$noShadow ? 'none' : 'drop-shadow(0 6px 8px rgba(0, 0, 0, 0.3))'};
   animation: ${props => {
     if (props.$isExpanded) {
