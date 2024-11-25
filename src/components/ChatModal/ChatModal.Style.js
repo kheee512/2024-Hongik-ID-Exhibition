@@ -29,7 +29,7 @@ export const ChatArea = styled.div`
 
 export const MessageContainer = styled.div`
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 1vw;
   justify-content: ${props => props.isUser ? 'flex-end' : 'flex-start'};
 `;
 
@@ -147,7 +147,7 @@ export const ChatInput = styled.input`
 
 export const IconButtonStyled = styled(IconButton)`
   &.send-button {
-    margin-right: 10px;
+    margin-right: 0.5vw;
   }
   &.clear-button {
     margin-left: 10px;
