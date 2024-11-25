@@ -191,7 +191,10 @@ const ChatModal = ({ selectedCircle, onNavigateHome }) => {
           />
         </InputUpperArea>
         <InputLowerArea $selectedCircle={selectedCircle}>
-          <div className="line"></div>
+          <div className="line-container">
+            <div className="circle"></div>
+            <div className="line"></div>
+          </div>
           <img 
             src={iconsIcon}
             alt="icons" 

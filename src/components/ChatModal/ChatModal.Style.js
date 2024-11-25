@@ -86,11 +86,28 @@ export const InputLowerArea = styled.div`
   position: relative;
   padding: 0 1vw;
 
+  .line-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-right: 1vw;
+  }
+
+  .circle {
+    width: 0.5vw;
+    height: 0.5vw;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+  }
+
   .line {
     width: 100%;
     height: 0.1vw;
     background-color: #FFFFFF;
-    margin-right: 1vw;
   }
 
   .icons-image {
