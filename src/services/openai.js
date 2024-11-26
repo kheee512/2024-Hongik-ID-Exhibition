@@ -7,10 +7,10 @@ const openai = new OpenAI({
 
 export const callOpenAI = async (message, context, messageHistory, onStream) => {
   try {
-    console.log('=== OpenAI API 요청 ===');
-    console.log('Context:', context);
-    console.log('Message History:', messageHistory);
-    console.log('Current Message:', message);
+    //console.log('=== OpenAI API 요청 ===');
+    //console.log('Context:', context);
+    //console.log('Message History:', messageHistory);
+    //console.log('Current Message:', message);
 
     const conversationHistory = messageHistory.map(msg => ({
       role: msg.isUser ? "user" : "assistant",
@@ -55,7 +55,7 @@ export const callOpenAI = async (message, context, messageHistory, onStream) => 
     ];
 
     const completion = await openai.chat.completions.create({
-      model: "gpt-4o",
+      model: "gpt-4o-2024-11-20",
       messages: messages,
       temperature: 0.9,
       stream: true
@@ -68,8 +68,8 @@ export const callOpenAI = async (message, context, messageHistory, onStream) => 
       onStream(content);
     }
 
-    console.log('=== OpenAI API 응답 ===');
-    console.log('AI Response:', fullResponse);
+    //console.log('=== OpenAI API 응답 ===');
+    //console.log('AI Response:', fullResponse);
 
     return {
       content: fullResponse
