@@ -1,4 +1,5 @@
-![20250223223156-000094](https://github.com/user-attachments/assets/3a00c9cc-c1b7-4967-91dc-c32c01043b64)
-![20250223223152-000093](https://github.com/user-attachments/assets/ff7f80a0-509e-4b3c-9a34-71ea1485a10f)
-![20250223223145-000092](https://github.com/user-attachments/assets/7aa8431f-bb9e-4ec2-af7f-4afb3ed2192b)
-![20250223223140-000091](https://github.com/user-attachments/assets/b6b08f1f-aa8c-41df-beb9-24ff0e0ce467)
+# Hongik Univ. Industrial Design 2024 Exhibition Interaction
+<img width="1510" alt="20250223223140-000091" src="https://github.com/user-attachments/assets/8fc9cffc-16e5-45bb-b95b-08b3668f1078" />
+<img width="1512" alt="20250223223145-000092" src="https://github.com/user-attachments/assets/2ca621c5-de0b-4d14-a480-26d3af7a1476" />
+<img width="1512" alt="20250223223152-000093" src="https://github.com/user-attachments/assets/f43788f9-4419-4c06-a227-f2c7bafa1383" />
+<img width="1510" alt="20250223223156-000094" src="https://github.com/user-attachments/assets/ef921cd8-16cb-4f6f-8528-be0c45c8429a" />
